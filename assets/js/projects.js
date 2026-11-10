@@ -1,5 +1,6 @@
 import { getProjects } from './api.js';
-import { el, icon, errorNote, prefersReducedMotion } from './dom.js';
+import { el, errorNote, prefersReducedMotion } from './dom.js';
+import { renderProject, renderOther } from './project-card.js';
 import { initFlows } from './motion/flow.js';
 
 /**
@@ -30,7 +31,7 @@ export async function initProjects() {
 
     list.replaceChildren(...featured.map((p) => renderProject(p, labels)));
     list.append(el('p', { class: 'loading-note', 'data-empty': true, hidden: true, text: 'No hay proyectos destacados en esta categoría; mira la lista de abajo.' }));
-    othersList.replaceChildren(...others.map((p) => renderOther(p)));
+    othersList.replaceChildren(...others.map(renderOther));
     othersBlock.hidden = others.length === 0;
 
     const items = [...list.querySelectorAll('[data-category]'), ...othersList.querySelectorAll('[data-category]')];
@@ -65,96 +66,7 @@ export async function initProjects() {
   }
 }
 
-/* ---------- Render ---------- */
-
-function renderProject(project, labels) {
-  const meta = [
-    metaRow('Stack', el('ul', { class: 'chips', role: 'list' }, project.stack.map((s) => el('li', { class: 'chip', text: s })))),
-    project.architecture ? metaRow('Arquitectura', el('span', { text: project.architecture })) : null,
-    metaRow('Categoría', el('span', { text: labels.get(project.category) ?? project.category })),
-  ];
-
-  const links = [
-    project.repo ? externalLink(project.repo, 'Repositorio') : null,
-    project.demo ? externalLink(project.demo, 'Ver demo') : null,
-  ].filter(Boolean);
-
-  const titleId = `project-${project.id}`;
-
-  return el('article', { class: 'project', 'data-category': project.category, 'aria-labelledby': titleId }, [
-    project.image ? renderFigure(project) : null,
-    el('div', { class: 'project__main' }, [
-      el('h3', { class: 'project__title', id: titleId, text: project.title }),
-      el('p', { class: 'project__subtitle', text: project.subtitle }),
-      el('p', { class: 'project__desc', text: project.description }),
-      project.highlights?.length
-        ? el('ul', { class: 'project__highlights', role: 'list' }, project.highlights.map((h) => el('li', { text: h })))
-        : null,
-    ]),
-    el('div', { class: 'project__meta' }, [
-      project.flow?.length ? renderFlow(project) : null,
-      el('dl', { class: 'project__facts' }, meta),
-      links.length ? el('div', { class: 'project__links' }, links) : null,
-    ]),
-  ]);
-}
-
-/** Diagrama vertical de capas; un pulso lo recorre de arriba abajo (ver motion/flow.js). */
-function renderFlow(project) {
-  const last = project.flow.length - 1;
-  return el('div', { class: 'meta__row' }, [
-    el('p', { class: 'meta__label', id: `flow-${project.id}`, text: project.flowLabel ?? 'Flujo' }),
-    el('div', { class: 'flow', 'data-flow': true }, el('ol', { class: 'flow__list', 'aria-labelledby': `flow-${project.id}` },
-      project.flow.map((step, i) => {
-        const node = el('li', { class: i === 0 || i === last ? 'flow__node flow__node--edge' : 'flow__node', text: step });
-        node.style.setProperty('--i', String(i));
-        return node;
-      }))),
-  ]);
-}
-
-/** Captura del proyecto en WebP con dos tamaños (480w y 960w). */
-function renderFigure(project) {
-  const base = project.image;
-  return el('figure', { class: 'project__figure' }, el('img', {
-    src: `${base}-960.webp`,
-    srcset: `${base}-480.webp 480w, ${base}-960.webp 960w`,
-    sizes: '(min-width: 1200px) 1100px, 100vw',
-    width: '960',
-    height: '540',
-    alt: `Captura de ${project.title}`,
-    loading: 'lazy',
-    decoding: 'async',
-  }));
-}
-
-function renderOther(project) {
-  const links = [
-    project.repo ? externalLink(project.repo, 'Repositorio') : null,
-    project.demo ? externalLink(project.demo, 'Demo') : null,
-  ].filter(Boolean);
-
-  return el('li', { class: 'other', 'data-category': project.category }, [
-    el('span', { class: 'other__title', text: project.title }),
-    el('span', { class: 'other__desc', text: project.subtitle }),
-    el('span', { class: 'other__stack' }, [project.stack.join(' · '), ...links]),
-  ]);
-}
-
-function metaRow(label, value) {
-  return el('div', { class: 'meta__row' }, [
-    el('dt', { class: 'meta__label', text: label }),
-    el('dd', { class: 'meta__value' }, value),
-  ]);
-}
-
-function externalLink(href, label) {
-  return el('a', { class: 'btn btn--ghost btn--sm', href, target: '_blank', rel: 'noopener noreferrer' }, [
-    label,
-    icon('arrow-up-right', 'icon--nudge-out'),
-    el('span', { class: 'visually-hidden', text: '(abre en una pestaña nueva)' }),
-  ]);
-}
+/* ---------- Filtros ---------- */
 
 function renderFilters(container, categories, projects) {
   const count = (id) => projects.filter((p) => id === ALL || p.category === id).length;
@@ -178,7 +90,7 @@ function renderFilters(container, categories, projects) {
 }
 
 /** Recorta la capa activa al botón seleccionado. */
-export function moveIndicator(container) {
+function moveIndicator(container) {
   const active = container.querySelector('.filters__active');
   const pressed = container.querySelector('[aria-pressed="true"]');
   if (!active || !pressed) return;
@@ -191,8 +103,6 @@ export function moveIndicator(container) {
   const bottom = box.height - (top + r.height);
   active.style.clipPath = `inset(${top}px ${right}px ${bottom}px ${left}px round 999px)`;
 }
-
-/* ---------- Filtro con transición ---------- */
 
 async function applyFilter(category, { items, list, othersBlock, status, labels }) {
   const run = ++filterRun;
@@ -245,7 +155,8 @@ function playEntranceWhenVisible(list) {
     if (!entries.some((e) => e.isIntersecting)) return;
     observer.disconnect();
     rows.forEach((row) => row.classList.remove('is-pending'));
-    animateIn(rows, 10, 420);
+    animateIn(rows.slice(0, 2), 10, 420);
+    rows.slice(2).forEach((row) => row.classList.remove('is-pending'));
   }, { rootMargin: '0px 0px -12% 0px' });
   observer.observe(list);
 }
