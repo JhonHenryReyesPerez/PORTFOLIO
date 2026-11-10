@@ -1,0 +1,47 @@
+[
+  {
+    "id": "lenguajes",
+    "label": "Lenguajes",
+    "items": [
+      { "name": "Java", "primary": true },
+      { "name": "JavaScript" },
+      { "name": "Python" },
+      { "name": "SQL" }
+    ]
+  },
+  {
+    "id": "backend",
+    "label": "Backend",
+    "items": [
+      { "name": "Spring Boot", "primary": true },
+      { "name": "Spring Security" },
+      { "name": "Spring Data JPA" }
+    ]
+  },
+  {
+    "id": "bases-de-datos",
+    "label": "Bases de datos",
+    "items": [
+      { "name": "PostgreSQL", "primary": true },
+      { "name": "MySQL" }
+    ]
+  },
+  {
+    "id": "frontend",
+    "label": "Frontend",
+    "items": [
+      { "name": "HTML5" },
+      { "name": "CSS3" }
+    ]
+  },
+  {
+    "id": "herramientas",
+    "label": "Herramientas",
+    "items": [
+      { "name": "Git" },
+      { "name": "Docker" },
+      { "name": "Linux" },
+      { "name": "n8n" }
+    ]
+  }
+]
