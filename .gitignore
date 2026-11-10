@@ -1,0 +1,27 @@
+# Herramientas de desarrollo con IA (no forman parte del sitio)
+.claude/skills/
+.claude/settings.local.json
+.agents/
+.taste-skill/
+
+# Dependencias y builds
+node_modules/
+dist/
+
+# Resultados de pruebas
+test-results/
+playwright-report/
+shots/
+
+# Sistema operativo y editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Logs y variables de entorno
+*.log
+.env
+.env.*
