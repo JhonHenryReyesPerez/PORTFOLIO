@@ -40,7 +40,7 @@ Requisitos adicionales del enunciado (obligatorios aunque no tengan puntaje expl
 - **HTML5 + CSS3 + JavaScript vanilla (ES Modules)**, sin build step. GitHub Pages lo sirve tal cual.
 - **Sin frameworks CSS** en el sitio principal: CSS propio con custom properties, Flexbox y Grid. Esto demuestra dominio de fundamentos.
 - **Datos dinámicos en JSON local** (`/data/*.json`) consumidos con `fetch()`.
-- **Fuentes:** máximo 2 familias de Google Fonts (p. ej. `Inter` para texto y `JetBrains Mono` para detalles de código), con `display=swap` y `preconnect`.
+- **Fuentes:** `IBM Plex Sans` (texto y títulos) e `IBM Plex Mono` (solo para código y datos, nunca como adorno), desde Google Fonts con `display=swap` y `preconnect`.
 - **Iconos:** SVG inline o un sprite SVG local. Nada de librerías pesadas de iconos.
 - **Sin dependencias en runtime** salvo que se justifique. Las herramientas de desarrollo (linters, tests) van en `package.json` como `devDependencies`.
 
@@ -90,12 +90,15 @@ Reglas:
 │   │   └── animations.css
 │   ├── js/
 │   │   ├── main.js           # punto de entrada (type="module")
-│   │   ├── api.js            # funciones fetch a /data
-│   │   ├── render.js         # pinta tarjetas y secciones dinámicas
-│   │   ├── nav.js            # menú móvil, scroll spy, navbar
+│   │   ├── api.js            # fetch a /data con caché, estado HTTP y tiempo
+│   │   ├── dom.js            # el(), icon(), errorNote(), prefersReducedMotion()
+│   │   ├── request-panel.js  # panel del hero (GET data/profile.json)
+│   │   ├── skills.js         # stack desde skills.json
+│   │   ├── projects.js       # proyectos, filtros y su coreografía
+│   │   ├── nav.js            # menú móvil, scroll spy, cabecera, volver arriba
 │   │   ├── theme.js          # modo claro/oscuro
-│   │   ├── animations.js     # IntersectionObserver
-│   │   └── contact.js        # formulario → mailto
+│   │   ├── contact.js        # correo, redes, formulario → mailto
+│   │   └── toast.js          # avisos breves
 │   ├── img/
 │   │   ├── profile/
 │   │   └── projects/
@@ -120,9 +123,9 @@ Reglas:
   <main id="main">
     <section id="inicio" aria-labelledby="...">     → hero: nombre (único <h1>), rol, CTA
     <section id="sobre-mi">                          → <h2>Sobre mí</h2>
-    <section id="habilidades">                       → <h2> + grupos con <h3>
-    <section id="proyectos">                         → <h2> + <article> por proyecto (<h3>)
-    <section id="otros-proyectos">                   → <h2> + lista
+    <section id="stack">                             → <h2> + grupos con <h3>
+    <section id="proyectos">                         → <h2> + filtros + <article> por proyecto (<h3>)
+                                                       + <h3>Otros proyectos</h3> con lista
     <section id="contacto">                          → <h2> + formulario + enlaces
   </main>
   <footer>            → redes, copyright, volver arriba
