@@ -89,6 +89,14 @@
   font-weight: 600;
 }
 
+.hero__role .hl--spring {
+  color: var(--tint-green);
+}
+
+.hero__role .hl--postgres {
+  color: var(--tint-blue);
+}
+
 .hero__lede {
   margin-top: var(--space-5);
   color: var(--text-muted);

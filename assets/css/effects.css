@@ -90,6 +90,14 @@
   opacity: 0.7;
 }
 
+.marquee__track li:nth-child(3n + 2)::after {
+  background-color: var(--accent-2);
+}
+
+.marquee__track li:nth-child(3n)::after {
+  background-color: var(--tint-blue);
+}
+
 .marquee.is-live .marquee__track {
   flex-wrap: nowrap;
   animation: marquee var(--dur) linear infinite;
@@ -280,6 +288,180 @@
   filter: blur(4px);
 }
 
+/* ---------- Aurora del hero ----------
+   Tres luces de color (acento, segundo acento y azul) que derivan despacio.
+   Son gradientes radiales sin filter: blur, así que solo se anima transform. */
+.aurora {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.aurora span {
+  position: absolute;
+  width: 52vmax;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  opacity: var(--aurora-opacity);
+  will-change: transform;
+}
+
+.aurora span:nth-child(1) {
+  top: -26%;
+  right: -12%;
+  background: radial-gradient(circle, color-mix(in oklab, var(--accent) 60%, transparent), transparent 62%);
+  animation: aurora-a 24s var(--ease-in-out) infinite alternate;
+}
+
+.aurora span:nth-child(2) {
+  bottom: -38%;
+  right: 18%;
+  background: radial-gradient(circle, color-mix(in oklab, var(--accent-2) 55%, transparent), transparent 62%);
+  animation: aurora-b 28s var(--ease-in-out) infinite alternate;
+}
+
+.aurora span:nth-child(3) {
+  top: -10%;
+  left: -28%;
+  background: radial-gradient(circle, color-mix(in oklab, var(--tint-blue) 40%, transparent), transparent 62%);
+  animation: aurora-c 32s var(--ease-in-out) infinite alternate;
+}
+
+@keyframes aurora-a { to { transform: translate(-14vw, 12vh) scale(1.15); } }
+@keyframes aurora-b { to { transform: translate(12vw, -10vh) scale(0.9); } }
+@keyframes aurora-c { to { transform: translate(18vw, 14vh) scale(1.1); } }
+
+/* Pausa global de las animaciones del inicio (botón junto a la cinta) */
+.is-motion-paused .aurora span {
+  animation-play-state: paused;
+}
+
+/* ---------- Brillo del botón principal al pasar el cursor ---------- */
+.btn--primary {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn--primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 0.3) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 700ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn--primary:hover::after {
+    transform: translateX(120%);
+  }
+}
+
+/* ---------- Bloque de contacto (cierre) ---------- */
+.section--contact {
+  border-top: 0;
+}
+
+.cta {
+  position: relative;
+  display: grid;
+  gap: var(--space-7);
+  padding: clamp(1.5rem, 1rem + 4vw, 4rem);
+  border-radius: 28px;
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--on-accent);
+  background:
+    radial-gradient(70% 90% at 0% 0%, var(--accent) 0%, transparent 70%),
+    radial-gradient(70% 90% at 100% 100%, var(--accent-2) 0%, transparent 70%),
+    linear-gradient(135deg, var(--accent), var(--accent-2));
+}
+
+/* Rejilla de puntos sobre el color */
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(circle, color-mix(in oklab, var(--on-accent) 22%, transparent) 1px, transparent 1.5px);
+  background-size: 22px 22px;
+  -webkit-mask-image: linear-gradient(120deg, #000, transparent 70%);
+  mask-image: linear-gradient(120deg, #000, transparent 70%);
+}
+
+.cta__title {
+  font-size: var(--step-4);
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.cta__lead {
+  margin-top: var(--space-4);
+  font-size: var(--step-1);
+  max-width: 32ch;
+}
+
+.cta__email {
+  display: inline-block;
+  margin-top: var(--space-6);
+  font-size: var(--step-2);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.25em;
+  overflow-wrap: anywhere;
+  transition: text-underline-offset var(--dur) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cta__email:hover {
+    text-underline-offset: 0.4em;
+  }
+}
+
+.cta .btn--ghost {
+  border-color: color-mix(in oklab, var(--on-accent) 55%, transparent);
+  color: var(--on-accent);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cta .btn--ghost:hover {
+    background-color: color-mix(in oklab, var(--on-accent) 14%, transparent);
+    border-color: var(--on-accent);
+  }
+}
+
+.cta :focus-visible {
+  outline-color: var(--on-accent);
+}
+
+/* El formulario es una tarjeta clara dentro del bloque de color */
+.cta__form {
+  margin-top: 0;
+  max-width: none;
+  padding: clamp(1.25rem, 1rem + 1.5vw, 2rem);
+  border-radius: 18px;
+  background-color: var(--surface);
+  color: var(--text);
+  box-shadow: 0 20px 50px -20px rgb(0 0 0 / 0.35);
+}
+
+.cta__form :focus-visible {
+  outline-color: var(--accent);
+}
+
+@media (min-width: 900px) {
+  .cta {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+  }
+}
+
 /* ---------- Movimiento reducido: todo en su estado final ---------- */
 @media (prefers-reduced-motion: reduce) {
   .marquee .marquee__track {
@@ -294,6 +476,14 @@
 
   .filters__active {
     transition: none;
+  }
+
+  .aurora span {
+    animation: none;
+  }
+
+  .btn--primary::after {
+    display: none;
   }
 
   .swap > .icon {
