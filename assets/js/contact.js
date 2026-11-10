@@ -48,13 +48,24 @@ function applyProfile(contact) {
   }
 }
 
+let copiedTimer;
+
 async function copyEmail() {
   try {
     await navigator.clipboard.writeText(email);
     showToast('Correo copiado al portapapeles');
+    swapCopyIcon(true);
+    clearTimeout(copiedTimer);
+    copiedTimer = setTimeout(() => swapCopyIcon(false), 1800);
   } catch {
     showToast(`No se pudo copiar. Mi correo es ${email}`, 4000);
   }
+}
+
+/** Cruza el icono de copiar con un check mientras dura la confirmación. */
+function swapCopyIcon(copied) {
+  document.querySelector('[data-copy-icon]')?.classList.toggle('is-hidden', copied);
+  document.querySelector('[data-check-icon]')?.classList.toggle('is-hidden', !copied);
 }
 
 /* ---------- Formulario → mailto ---------- */

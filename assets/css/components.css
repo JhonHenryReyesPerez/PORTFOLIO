@@ -50,26 +50,32 @@
   }
 }
 
-/* Interruptor de tema: muestra el icono del tema al que se cambiará */
-.theme-toggle .icon--sun {
-  display: none;
+/* Interruptor de tema: muestra el icono del tema al que se cambiará.
+   Los iconos se cruzan con escala + desenfoque (ver .swap en effects.css). */
+.theme-toggle .icon--sun,
+:root[data-theme="dark"] .theme-toggle .icon--moon {
+  opacity: 0;
+  transform: scale(0.25) rotate(-45deg);
+  filter: blur(4px);
 }
 
 :root[data-theme="dark"] .theme-toggle .icon--sun {
-  display: block;
-}
-
-:root[data-theme="dark"] .theme-toggle .icon--moon {
-  display: none;
+  opacity: 1;
+  transform: none;
+  filter: none;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .theme-toggle .icon--sun {
-    display: block;
+    opacity: 1;
+    transform: none;
+    filter: none;
   }
 
   :root:not([data-theme="light"]) .theme-toggle .icon--moon {
-    display: none;
+    opacity: 0;
+    transform: scale(0.25) rotate(45deg);
+    filter: blur(4px);
   }
 }
 
@@ -313,6 +319,44 @@
   white-space: nowrap;
 }
 
+.request__resend {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin: -6px -6px -6px 0;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  transition: color var(--dur-fast) ease, background-color var(--dur-fast) ease, transform var(--dur-press) var(--ease-out);
+}
+
+.request__resend:active {
+  transform: scale(0.92);
+}
+
+.request__resend:disabled {
+  cursor: default;
+  opacity: 0.45;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .request__resend:not(:disabled):hover {
+    color: var(--text);
+    background-color: var(--surface-2);
+  }
+}
+
+/* El área táctil de 32px se amplía a 44px sin cambiar el tamaño visual */
+.request__resend {
+  position: relative;
+}
+
+.request__resend::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+}
+
 .request__status.is-ok {
   color: var(--status-ok);
 }
@@ -417,9 +461,6 @@
 
 /* ---------- Filtros ---------- */
 .filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
   margin-bottom: var(--space-6);
 }
 
