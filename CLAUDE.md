@@ -226,6 +226,11 @@ Criterio: movimiento con propósito, no decoración. Detalle de cómo hacerlo en
 - **Transiciones de estado:** navbar (transparente → sólida al hacer scroll), menú móvil, cambio de tema, toast de "correo copiado".
 - **Evitar** (regla compartida por Taste y Emil): fade-in en cada sección o en cada tarjeta al hacer scroll, parallax en texto, scroll-jacking, tilt 3D, carruseles automáticos. Como máximo un *reveal* sutil por sección importante, nunca por elemento.
 - Animar solo `transform` y `opacity` (rendimiento). Duraciones entre 150 ms y 400 ms para UI; easing tipo `ease-out` para entradas.
+- **Presupuesto de efectos (lleno, no agregar más sin quitar otro)** — `assets/css/effects.css` + `assets/js/motion/`:
+  - 1 efecto de puntero: spotlight con rejilla de puntos en el hero (`spotlight.js`).
+  - 2 momentos: cinta de tecnologías con pausa (`marquee.js`) y frase que se enciende al hacer scroll en Sobre mí (`word-highlight.js`).
+  - 2 diagramas con pulsos (CampusDesk, SmartCity Fix), 3 ciclos y reposo (`flow.js`; datos en `flow` de `projects.json`).
+  - Micro-interacciones: indicador de filtros con `clip-path`, intercambio de iconos (tema, copiar), reenviar petición.
 - **Obligatorio:** `@media (prefers-reduced-motion: reduce)` desactiva o reduce todas las animaciones.
 - Las animaciones nunca deben ocultar contenido si el JS falla (el contenido es visible por defecto; la clase de animación se agrega desde JS).
 

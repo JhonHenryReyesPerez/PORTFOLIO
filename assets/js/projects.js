@@ -1,5 +1,6 @@
 import { getProjects } from './api.js';
 import { el, icon, errorNote, prefersReducedMotion } from './dom.js';
+import { initFlows } from './motion/flow.js';
 
 /**
  * Sección de proyectos: carga projects.json, pinta los destacados y los demás,
@@ -36,6 +37,14 @@ export async function initProjects() {
     renderFilters(filters, categories, projects);
     filters.hidden = false;
 
+    // Posición inicial sin transición; después, cada cambio se desliza
+    const indicator = filters.querySelector('.filters__active');
+    indicator.style.transition = 'none';
+    moveIndicator(filters);
+    requestAnimationFrame(() => requestAnimationFrame(() => { indicator.style.transition = ''; }));
+    new ResizeObserver(() => moveIndicator(filters)).observe(filters);
+    document.fonts?.ready.then(() => moveIndicator(filters));
+
     filters.addEventListener('click', (event) => {
       const button = event.target.closest('[data-filter]');
       if (!button || button.getAttribute('aria-pressed') === 'true') return;
@@ -43,9 +52,11 @@ export async function initProjects() {
       for (const b of filters.querySelectorAll('[data-filter]')) {
         b.setAttribute('aria-pressed', String(b === button));
       }
+      moveIndicator(filters);
       applyFilter(button.dataset.filter, { items, list, othersBlock, status, labels });
     });
 
+    initFlows(list);
     playEntranceWhenVisible(list);
   } catch (error) {
     list.replaceChildren(errorNote('No se pudieron cargar los proyectos.', error));
@@ -81,9 +92,24 @@ function renderProject(project, labels) {
         : null,
     ]),
     el('div', { class: 'project__meta' }, [
+      project.flow?.length ? renderFlow(project) : null,
       el('dl', { class: 'project__facts' }, meta),
       links.length ? el('div', { class: 'project__links' }, links) : null,
     ]),
+  ]);
+}
+
+/** Diagrama vertical de capas; un pulso lo recorre de arriba abajo (ver motion/flow.js). */
+function renderFlow(project) {
+  const last = project.flow.length - 1;
+  return el('div', { class: 'meta__row' }, [
+    el('p', { class: 'meta__label', id: `flow-${project.id}`, text: project.flowLabel ?? 'Flujo' }),
+    el('div', { class: 'flow', 'data-flow': true }, el('ol', { class: 'flow__list', 'aria-labelledby': `flow-${project.id}` },
+      project.flow.map((step, i) => {
+        const node = el('li', { class: i === 0 || i === last ? 'flow__node flow__node--edge' : 'flow__node', text: step });
+        node.style.setProperty('--i', String(i));
+        return node;
+      }))),
   ]);
 }
 
@@ -134,16 +160,36 @@ function renderFilters(container, categories, projects) {
   const count = (id) => projects.filter((p) => id === ALL || p.category === id).length;
   const options = [{ id: ALL, label: 'Todos' }, ...categories.filter((c) => count(c.id) > 0)];
 
-  container.replaceChildren(...options.map((option) =>
-    el('button', {
-      class: 'filter',
-      type: 'button',
-      'data-filter': option.id,
-      'aria-pressed': String(option.id === ALL),
-    }, [
-      option.label,
-      el('span', { class: 'filter__count', 'aria-hidden': 'true', text: String(count(option.id)) }),
-    ])));
+  const button = (option, interactive) => el(interactive ? 'button' : 'span', {
+    class: 'filter',
+    type: interactive ? 'button' : null,
+    'data-filter': interactive ? option.id : null,
+    'aria-pressed': interactive ? String(option.id === ALL) : null,
+  }, [
+    option.label,
+    el('span', { class: 'filter__count', 'aria-hidden': 'true', text: String(count(option.id)) }),
+  ]);
+
+  // Capa base con los botones reales y una copia "activa" encima, recortada con clip-path
+  // al botón seleccionado: al cambiar de filtro el recorte se desliza (receta de Emil Kowalski).
+  const list = el('div', { class: 'filters__list' }, options.map((o) => button(o, true)));
+  const active = el('div', { class: 'filters__active', 'aria-hidden': 'true' }, options.map((o) => button(o, false)));
+  container.replaceChildren(list, active);
+}
+
+/** Recorta la capa activa al botón seleccionado. */
+export function moveIndicator(container) {
+  const active = container.querySelector('.filters__active');
+  const pressed = container.querySelector('[aria-pressed="true"]');
+  if (!active || !pressed) return;
+
+  const box = container.getBoundingClientRect();
+  const r = pressed.getBoundingClientRect();
+  const top = r.top - box.top;
+  const left = r.left - box.left;
+  const right = box.width - (left + r.width);
+  const bottom = box.height - (top + r.height);
+  active.style.clipPath = `inset(${top}px ${right}px ${bottom}px ${left}px round 999px)`;
 }
 
 /* ---------- Filtro con transición ---------- */

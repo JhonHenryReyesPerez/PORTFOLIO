@@ -61,7 +61,7 @@
 
 /* ---------- Hero ---------- */
 .hero {
-  padding-block: clamp(3rem, 2rem + 6vw, 7rem) var(--space-section);
+  padding-block: clamp(3rem, 2rem + 6vw, 7rem) 0;
 }
 
 .hero__grid {
@@ -159,10 +159,16 @@
   margin-top: var(--space-4);
 }
 
-.prose p:first-child {
-  font-size: var(--step-1);
-  line-height: 1.5;
-  letter-spacing: -0.01em;
+.split__body > .statement {
+  margin-bottom: var(--space-6);
+}
+
+.prose {
+  color: var(--text-muted);
+}
+
+.hero__marquee {
+  margin-top: var(--space-8);
 }
 
 /* ---------- Pie ---------- */
@@ -210,10 +216,15 @@
 
 @media (min-width: 1024px) {
   .hero {
-    min-height: min(calc(100svh - var(--header-h)), 52rem);
+    min-height: min(calc(100svh - var(--header-h)), 54rem);
     display: grid;
+    grid-template-rows: 1fr auto;
     align-items: center;
-    padding-block: var(--space-7) var(--space-8);
+    padding-block: var(--space-7) 0;
+  }
+
+  .hero__marquee {
+    margin-top: var(--space-7);
   }
 
   .hero__grid {

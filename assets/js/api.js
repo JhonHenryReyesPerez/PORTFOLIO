@@ -9,7 +9,11 @@ const cache = new Map();
  * @param {string} path Ruta relativa, por ejemplo "data/projects.json".
  * @returns {Promise<{ data: unknown, status: number, statusText: string, ms: number }>}
  */
-export function request(path) {
+export function request(path, { fresh = false } = {}) {
+  if (fresh) {
+    // Petición nueva saltándose la caché del navegador (botón "reenviar" del panel)
+    return load(path, { cache: 'no-store' });
+  }
   if (!cache.has(path)) {
     const pending = load(path).catch((error) => {
       cache.delete(path); // Permite reintentar si falló
@@ -20,9 +24,9 @@ export function request(path) {
   return cache.get(path);
 }
 
-async function load(path) {
+async function load(path, options = {}) {
   const start = performance.now();
-  const response = await fetch(path, { headers: { Accept: 'application/json' } });
+  const response = await fetch(path, { headers: { Accept: 'application/json' }, ...options });
 
   if (!response.ok) {
     throw new Error(`HTTP ${response.status} al cargar ${path}`);
