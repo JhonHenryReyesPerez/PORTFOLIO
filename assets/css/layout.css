@@ -171,6 +171,47 @@
   margin-top: var(--space-8);
 }
 
+/* Retrato en "Sobre mí": la foto hace un leve zoom dentro de su marco al pasar el cursor */
+.portrait {
+  margin-top: var(--space-6);
+  width: min(100%, 18rem);
+  aspect-ratio: 3 / 4;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background-color: var(--surface-2);
+  box-shadow: var(--shadow);
+}
+
+.portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .portrait:hover img {
+    transform: scale(1.03);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portrait img {
+    transition: none;
+  }
+
+  .portrait:hover img {
+    transform: none;
+  }
+}
+
+.focus-more {
+  margin-top: var(--space-4);
+  font-weight: 500;
+  color: var(--accent);
+}
+
 /* ---------- Pie ---------- */
 .site-footer {
   border-top: 1px solid var(--border);
