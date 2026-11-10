@@ -1,0 +1,132 @@
+{
+  "categories": [
+    { "id": "backend", "label": "Backend" },
+    { "id": "bases-de-datos", "label": "Bases de datos" },
+    { "id": "frontend", "label": "Frontend" },
+    { "id": "hackathon", "label": "Hackathon" },
+    { "id": "fundamentos", "label": "Fundamentos" }
+  ],
+  "projects": [
+    {
+      "id": "campusdesk",
+      "title": "CampusDesk",
+      "subtitle": "Sistema de gestión de soporte técnico",
+      "description": "Aplicación web para gestionar incidencias tecnológicas: los usuarios reportan, el sistema asigna técnicos y cada ticket tiene seguimiento hasta su cierre. La API REST sigue una arquitectura por capas con persistencia mediante JPA.",
+      "highlights": [
+        "Autenticación con JWT",
+        "Control de acceso por roles",
+        "Asignación de técnicos y seguimiento de tickets",
+        "API REST por capas con Spring Data JPA"
+      ],
+      "stack": ["Java", "Spring Boot", "Spring Security", "PostgreSQL", "JavaScript"],
+      "architecture": "Por capas",
+      "category": "backend",
+      "featured": true,
+      "image": null,
+      "repo": null,
+      "demo": null
+    },
+    {
+      "id": "rapidexpress",
+      "title": "RapidExpress",
+      "subtitle": "Sistema de gestión de flotas y rutas",
+      "description": "Sistema backend para administrar operaciones logísticas: vehículos, conductores, paquetes, rutas y mantenimientos. Aplica validaciones de negocio, sigue cada entrega y genera reportes, con persistencia en MySQL.",
+      "highlights": [
+        "Validaciones de reglas de negocio",
+        "Seguimiento de entregas",
+        "Reportes operativos"
+      ],
+      "stack": ["Java", "MySQL", "Maven"],
+      "architecture": "MVC",
+      "category": "backend",
+      "featured": true,
+      "image": null,
+      "repo": null,
+      "demo": null
+    },
+    {
+      "id": "smartcity-fix",
+      "title": "SmartCity Fix",
+      "subtitle": "Plataforma de reportes ciudadanos",
+      "description": "Plataforma construida durante un hackathon para reportar y gestionar incidentes urbanos. Los reportes se ubican en un mapa interactivo y n8n automatiza su gestión y las notificaciones a través de servicios externos.",
+      "highlights": [
+        "Mapas interactivos con Leaflet.js",
+        "Automatización de procesos con n8n",
+        "Integración con APIs externas",
+        "Servicios en contenedores con Docker"
+      ],
+      "stack": ["JavaScript", "Node.js", "Leaflet.js", "Docker", "n8n"],
+      "architecture": null,
+      "category": "hackathon",
+      "featured": true,
+      "image": null,
+      "repo": null,
+      "demo": null
+    },
+    {
+      "id": "coworking-db",
+      "title": "Gestión de Coworking",
+      "subtitle": "Base de datos relacional",
+      "description": "Base de datos para administrar clientes, membresías, reservas, facturación y control de accesos de un espacio de coworking. Las reglas de negocio viven en la propia base de datos.",
+      "highlights": [
+        "Más de 20 triggers con reglas de negocio",
+        "Eventos programados",
+        "Modelo de clientes, membresías, reservas y facturación"
+      ],
+      "stack": ["MySQL"],
+      "architecture": null,
+      "category": "bases-de-datos",
+      "featured": true,
+      "image": null,
+      "repo": null,
+      "demo": null
+    },
+    {
+      "id": "construccion",
+      "title": "Gestión de Proyectos de Construcción",
+      "subtitle": "Seguimiento de obra",
+      "description": "Aplicación web para seguir el personal, las actividades, los hitos y los cronogramas de proyectos de construcción, con la interfaz escrita en JavaScript.",
+      "highlights": [
+        "Gestión de personal y actividades",
+        "Hitos y cronogramas por proyecto"
+      ],
+      "stack": ["JavaScript", "HTML", "CSS"],
+      "architecture": null,
+      "category": "frontend",
+      "featured": true,
+      "image": null,
+      "repo": null,
+      "demo": null
+    },
+    {
+      "id": "neometro",
+      "title": "Hackathon NeoMetro",
+      "subtitle": "Gestión de incidentes ciudadanos con mapas, automatización e integración de APIs.",
+      "stack": ["JavaScript", "n8n", "APIs"],
+      "category": "hackathon",
+      "featured": false,
+      "repo": null,
+      "demo": null
+    },
+    {
+      "id": "tienda-musica",
+      "title": "Tienda de música",
+      "subtitle": "Interfaz responsive maquetada con HTML y CSS.",
+      "stack": ["HTML", "CSS"],
+      "category": "frontend",
+      "featured": false,
+      "repo": null,
+      "demo": null
+    },
+    {
+      "id": "python-fundamentos",
+      "title": "Proyecto Python",
+      "subtitle": "Ejercicios y estructuras fundamentales de programación.",
+      "stack": ["Python"],
+      "category": "fundamentos",
+      "featured": false,
+      "repo": null,
+      "demo": null
+    }
+  ]
+}

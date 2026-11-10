@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Página no encontrada · Jhon Reyes</title>
+  <meta name="robots" content="noindex">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <script>
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body>
+  <main class="wrap not-found" id="main">
+    <div class="request enter--panel">
+      <div class="request__bar">
+        <span class="request__method">GET</span>
+        <span class="request__path">esta página</span>
+        <span class="request__status is-error">404 Not Found</span>
+      </div>
+    </div>
+    <h1 class="section__title enter enter--2">Esta página no existe</h1>
+    <p class="section__intro enter enter--3">Puede que el enlace esté mal escrito o que la página se haya movido.</p>
+    <p class="enter enter--4">
+      <a class="btn btn--primary" href="./">Ir al inicio</a>
+    </p>
+  </main>
+</body>
+</html>

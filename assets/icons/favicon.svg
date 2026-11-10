@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    rect { fill: #17191e; }
+    text { fill: #f5f3ee; }
+    @media (prefers-color-scheme: dark) {
+      rect { fill: #f0a04b; }
+      text { fill: #1b1206; }
+    }
+  </style>
+  <rect width="64" height="64" rx="12"/>
+  <text x="32" y="42" text-anchor="middle" font-family="IBM Plex Sans, Segoe UI, Arial, sans-serif" font-size="28" font-weight="600" letter-spacing="0.5">JR</text>
+</svg>
