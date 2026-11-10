@@ -19,13 +19,16 @@
         "API REST por capas con Spring Data JPA"
       ],
       "stack": ["Java", "Spring Boot", "Spring Security", "PostgreSQL", "JavaScript"],
-      "architecture": "Por capas",
-      "flowLabel": "Recorrido de una petición",
-      "flow": ["Cliente web (JavaScript)", "Spring Security · filtro JWT", "Controladores REST", "Servicios · reglas de negocio", "Repositorios · Spring Data JPA", "PostgreSQL"],
+      "architecture": "por capas",
       "category": "backend",
       "featured": true,
-      "image": null,
-      "repo": null,
+      "tint": "blue",
+      "visual": {
+        "type": "flow",
+        "label": "Recorrido de una petición",
+        "steps": ["Cliente web (JavaScript)", "Spring Security · filtro JWT", "Controladores REST", "Servicios · reglas de negocio", "Repositorios · Spring Data JPA", "PostgreSQL"]
+      },
+      "repo": "https://github.com/JhonHenryReyesPerez/CAMPUSDESK",
       "demo": null
     },
     {
@@ -42,8 +45,14 @@
       "architecture": "MVC",
       "category": "backend",
       "featured": true,
-      "image": null,
-      "repo": null,
+      "tint": "amber",
+      "visual": {
+        "type": "modules",
+        "label": "Módulos del sistema",
+        "items": ["Vehículos", "Conductores", "Paquetes", "Rutas", "Mantenimientos", "Reportes"],
+        "layers": ["Vista", "Controlador", "Modelo", "MySQL"]
+      },
+      "repo": "https://github.com/SebbsAL/RapidExpress",
       "demo": null
     },
     {
@@ -59,12 +68,15 @@
       ],
       "stack": ["JavaScript", "Node.js", "Leaflet.js", "Docker", "n8n"],
       "architecture": null,
-      "flowLabel": "Recorrido de un reporte",
-      "flow": ["Reporte ciudadano", "Mapa interactivo · Leaflet.js", "Servidor Node.js", "Flujo de automatización · n8n", "APIs externas y notificaciones"],
       "category": "hackathon",
       "featured": true,
-      "image": null,
-      "repo": null,
+      "tint": "green",
+      "visual": {
+        "type": "flow",
+        "label": "Recorrido de un reporte",
+        "steps": ["Reporte ciudadano", "Mapa interactivo · Leaflet.js", "Servidor Node.js", "Flujo de automatización · n8n", "APIs externas y notificaciones"]
+      },
+      "repo": "https://github.com/SebbsAL/Proyecto-N8N",
       "demo": null
     },
     {
@@ -81,14 +93,20 @@
       "architecture": null,
       "category": "bases-de-datos",
       "featured": true,
-      "image": null,
-      "repo": null,
+      "tint": "teal",
+      "visual": {
+        "type": "schema",
+        "label": "Modelo de datos",
+        "tables": ["clientes", "membresías", "reservas", "facturación", "accesos"],
+        "badges": ["Más de 20 triggers", "Eventos programados"]
+      },
+      "repo": "https://github.com/SebbsAL/Proyecto-MySQL",
       "demo": null
     },
     {
       "id": "construccion",
       "title": "Gestión de Proyectos de Construcción",
-      "subtitle": "Seguimiento de obra",
+      "subtitle": "CampusBuild · seguimiento de obra",
       "description": "Aplicación web para seguir el personal, las actividades, los hitos y los cronogramas de proyectos de construcción, con la interfaz escrita en JavaScript.",
       "highlights": [
         "Gestión de personal y actividades",
@@ -98,9 +116,14 @@
       "architecture": null,
       "category": "frontend",
       "featured": true,
-      "image": null,
-      "repo": null,
-      "demo": null
+      "tint": "sky",
+      "visual": {
+        "type": "image",
+        "src": "assets/img/projects/construccion",
+        "alt": "Panel de CampusBuild con el resumen de operaciones: proyectos activos, actividades pendientes y personal asignado"
+      },
+      "repo": "https://github.com/JhonHenryReyesPerez/Proyecto-JS",
+      "demo": "https://proyecto-js-phi.vercel.app/"
     },
     {
       "id": "neometro",
@@ -109,18 +132,18 @@
       "stack": ["JavaScript", "n8n", "APIs"],
       "category": "hackathon",
       "featured": false,
-      "repo": null,
+      "repo": "https://github.com/JhonHenryReyesPerez/HackatonNeoMetro",
       "demo": null
     },
     {
       "id": "tienda-musica",
       "title": "Tienda de música",
-      "subtitle": "Interfaz responsive maquetada con HTML y CSS.",
+      "subtitle": "MusicStream: interfaz responsive maquetada con HTML y CSS.",
       "stack": ["HTML", "CSS"],
       "category": "frontend",
       "featured": false,
-      "repo": null,
-      "demo": null
+      "repo": "https://github.com/JhonHenryReyesPerez/los-psicoactivos-sounds",
+      "demo": "https://musicstream-jhon.vercel.app/"
     },
     {
       "id": "python-fundamentos",
@@ -129,7 +152,7 @@
       "stack": ["Python"],
       "category": "fundamentos",
       "featured": false,
-      "repo": null,
+      "repo": "https://github.com/JhonHenryReyesPerez/Proyecto_Python_ReyesJhon",
       "demo": null
     }
   ]

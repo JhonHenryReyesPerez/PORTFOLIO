@@ -26,9 +26,11 @@ export function initMarquee() {
   pause.className = 'icon-btn marquee__pause';
   root.append(pause);
 
+  // Este botón pausa todo lo que se mueve solo en el inicio: la cinta y la aurora del fondo
   const setPaused = (paused) => {
     root.classList.toggle('is-paused', paused);
-    pause.setAttribute('aria-label', paused ? 'Reanudar la cinta de tecnologías' : 'Pausar la cinta de tecnologías');
+    document.documentElement.classList.toggle('is-motion-paused', paused);
+    pause.setAttribute('aria-label', paused ? 'Reanudar las animaciones del inicio' : 'Pausar las animaciones del inicio');
     pause.replaceChildren(icon(paused ? 'play' : 'pause'));
   };
   setPaused(false);
