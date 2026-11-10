@@ -228,8 +228,10 @@ Criterio: movimiento con propósito, no decoración. Detalle de cómo hacerlo en
 - Animar solo `transform` y `opacity` (rendimiento). Duraciones entre 150 ms y 400 ms para UI; easing tipo `ease-out` para entradas.
 - **Presupuesto de efectos (lleno, no agregar más sin quitar otro)** — `assets/css/effects.css` + `assets/js/motion/`:
   - 1 efecto de puntero: spotlight con rejilla de puntos en el hero (`spotlight.js`).
+  - Fondo: aurora del hero (3 luces de color, 24–32 s, se pausa con el botón de la cinta vía `.is-motion-paused` en `<html>`).
   - 2 momentos: cinta de tecnologías con pausa (`marquee.js`) y frase que se enciende al hacer scroll en Sobre mí (`word-highlight.js`).
-  - 2 diagramas con pulsos (CampusDesk, SmartCity Fix), 3 ciclos y reposo (`flow.js`; datos en `flow` de `projects.json`).
+  - Paneles visuales por proyecto (`project-card.js` + `projects.css`): 2 diagramas con pulsos (CampusDesk, SmartCity Fix), módulos MVC y esquema de BD que se iluminan en secuencia, todos 3 ciclos y reposo; captura de demo en marco de navegador. Cada proyecto tiene un tono (`tint` en `projects.json` → `--tint-*` en `tokens.css`).
+  - Bloque de contacto (CTA) con degradado accent → accent-2 y brillo en el botón primario.
   - Micro-interacciones: indicador de filtros con `clip-path`, intercambio de iconos (tema, copiar), reenviar petición.
 - **Obligatorio:** `@media (prefers-reduced-motion: reduce)` desactiva o reduce todas las animaciones.
 - Las animaciones nunca deben ocultar contenido si el JS falla (el contenido es visible por defecto; la clase de animación se agrega desde JS).
