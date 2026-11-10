@@ -36,6 +36,7 @@
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/effects.css">
 
   <script type="module" src="assets/js/main.js"></script>
 </head>
@@ -53,6 +54,9 @@
     <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
     <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10-6.5Z"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 6v12M15 6v12"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4.5v4h-4"/></symbol>
   </svg>
 
   <a class="skip-link" href="#main">Saltar al contenido</a>
@@ -80,15 +84,17 @@
       </nav>
 
       <button class="icon-btn theme-toggle" type="button" data-theme-toggle>
-        <svg class="icon icon--sun" aria-hidden="true"><use href="#i-sun"/></svg>
-        <svg class="icon icon--moon" aria-hidden="true"><use href="#i-moon"/></svg>
+        <span class="swap">
+          <svg class="icon icon--sun" aria-hidden="true"><use href="#i-sun"/></svg>
+          <svg class="icon icon--moon" aria-hidden="true"><use href="#i-moon"/></svg>
+        </span>
         <span class="visually-hidden" data-theme-label>Cambiar a tema oscuro</span>
       </button>
     </div>
   </header>
 
   <main id="main" tabindex="-1">
-    <section class="hero" id="inicio" aria-labelledby="hero-title">
+    <section class="hero spotlight" id="inicio" aria-labelledby="hero-title" data-spotlight>
       <div class="wrap hero__grid">
         <div class="hero__copy">
           <h1 class="hero__title enter enter--1" id="hero-title">Jhon Reyes</h1>
@@ -116,11 +122,35 @@
               <span class="request__method">GET</span>
               <span class="request__path">data/profile.json</span>
               <span class="request__status" data-request-status aria-live="polite">cargando…</span>
+              <button class="request__resend" type="button" data-request-resend aria-label="Enviar la petición de nuevo" disabled>
+                <svg class="icon" aria-hidden="true"><use href="#i-refresh"/></svg>
+              </button>
             </div>
             <pre class="request__body" data-request-body tabindex="0"><code><span class="code-punct">{</span>
   <span class="code-muted">esperando respuesta</span>
 <span class="code-punct">}</span></code></pre>
           </div>
+        </div>
+      </div>
+
+      <div class="wrap hero__marquee enter enter--4">
+        <div class="marquee" data-marquee>
+          <ul class="marquee__track" role="list" aria-label="Tecnologías con las que trabajo">
+            <li>Java</li>
+            <li>Spring Boot</li>
+            <li>Spring Security</li>
+            <li>Spring Data JPA</li>
+            <li>APIs REST</li>
+            <li>JWT</li>
+            <li>PostgreSQL</li>
+            <li>MySQL</li>
+            <li>Docker</li>
+            <li>n8n</li>
+            <li>Git</li>
+            <li>Linux</li>
+            <li>JavaScript</li>
+            <li>Python</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -131,9 +161,12 @@
           <h2 class="section__title" id="about-title">Sobre mí</h2>
         </header>
         <div class="split__body">
+          <p class="statement" data-word-highlight>
+            Me interesa construir soluciones <strong>bien estructuradas</strong> y entender <strong>la lógica detrás de cada implementación</strong>.
+          </p>
           <div class="prose">
             <p>Soy desarrollador de software en formación, con enfoque en el backend con Java y Spring Boot. Tengo experiencia académica y práctica construyendo aplicaciones web, APIs REST, bases de datos relacionales e integraciones con herramientas de automatización.</p>
-            <p>Me interesa escribir soluciones bien estructuradas y entender la lógica detrás de cada implementación. Hoy sigo fortaleciendo mis conocimientos en arquitectura de software y buenas prácticas de desarrollo.</p>
+            <p>Hoy sigo fortaleciendo mis conocimientos en arquitectura de software y buenas prácticas de desarrollo.</p>
           </div>
 
           <h3 class="subhead">En qué he trabajado</h3>
@@ -197,7 +230,10 @@
             <a class="contact__email" href="mailto:TODO-correo@example.com" data-profile-email-link data-profile-email-text>TODO-correo@example.com</a>
             <div class="contact__actions">
               <button class="btn btn--ghost btn--sm" type="button" data-copy-email>
-                <svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg>
+                <span class="swap">
+                  <svg class="icon" aria-hidden="true" data-copy-icon><use href="#i-copy"/></svg>
+                  <svg class="icon is-hidden" aria-hidden="true" data-check-icon><use href="#i-check"/></svg>
+                </span>
                 Copiar correo
               </button>
               <a class="btn btn--ghost btn--sm" href="#" data-profile-link="linkedin" target="_blank" rel="noopener noreferrer" hidden>
