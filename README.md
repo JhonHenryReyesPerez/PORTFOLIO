@@ -13,7 +13,13 @@ Portafolio profesional de **Jhon Reyes**, desarrollador de software backend con 
 - **Carga dinámica con peticiones locales:** el stack, los proyectos y el perfil se cargan con `fetch()` desde archivos JSON en `data/`. El panel del inicio muestra la petición real a `data/profile.json` con su estado HTTP y su tiempo de respuesta.
 - **Filtro de proyectos por categoría**, con botones accesibles (`aria-pressed`) y anuncio del resultado a lectores de pantalla.
 - **Contacto por correo:** enlace `mailto:`, botón para copiar el correo y un formulario validado que abre la aplicación de correo con el asunto y el mensaje listos.
-- **Animaciones con propósito:** entrada coreografiada del inicio, entrada en grupo de la lista de proyectos, transición al filtrar, micro-interacciones en botones y enlaces. Todo respeta `prefers-reduced-motion`.
+- **Animaciones con propósito:**
+  - Entrada coreografiada del inicio y luz que sigue al cursor con una rejilla de puntos.
+  - Cinta de tecnologías en bucle, con botón de pausa, que solo corre cuando está en pantalla.
+  - Frase de "Sobre mí" que se enciende palabra por palabra, ligada al scroll.
+  - Diagramas de arquitectura donde un pulso recorre las capas (petición en CampusDesk, reporte en SmartCity Fix).
+  - Indicador del filtro que se desliza con `clip-path`, iconos que se cruzan con escala y desenfoque, entrada en grupo de los proyectos.
+  - Todo respeta `prefers-reduced-motion` y tiene un estado final sin JavaScript.
 - **Accesibilidad:** HTML semántico, enlace para saltar al contenido, foco visible, navegación completa con teclado, contraste WCAG AA verificado.
 
 ## Tecnologías
