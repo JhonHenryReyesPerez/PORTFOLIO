@@ -79,6 +79,11 @@ El workflow `.github/workflows/deploy.yml` publica en GitHub Pages en cada push 
 - **Viewports:** `tests/viewports.html` muestra el sitio a 320, 390 y 768 px a la vez.
 - _TODO: resultados de Lighthouse, validadores W3C y pruebas automatizadas._
 
+## Imágenes y recursos
+
+- **Foto de perfil:** recortada a 3:4 y convertida a WebP en dos anchos (360 px ≈ 9 KB y 640 px ≈ 20 KB, frente a 79 KB del JPEG original), servida con `srcset`, `width`/`height` explícitos y `loading="lazy"`.
+- **Logos del stack:** [Simple Icons](https://simpleicons.org) 16.37.0 (CC0), reunidos en un sprite local `assets/icons/tech.svg` de ~24 KB. Las marcas pertenecen a sus respectivos dueños.
+
 ## Autor
 
-**Jhon Reyes** · _TODO: enlaces a LinkedIn y GitHub_
+**Jhon Reyes** · [jhonrysprzhh@gmail.com](mailto:jhonrysprzhh@gmail.com) · _TODO: enlaces a LinkedIn y GitHub_
