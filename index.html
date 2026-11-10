@@ -14,7 +14,8 @@
   <meta property="og:locale" content="es_CO">
   <meta property="og:title" content="Jhon Reyes · Desarrollador de Software">
   <meta property="og:description" content="Backend con Java, Spring Boot y PostgreSQL. Proyectos, stack y contacto.">
-  <!-- TODO: og:image y og:url cuando exista la URL de GitHub Pages -->
+  <meta property="og:image" content="assets/img/profile/jhon-reyes-480.jpg">
+  <!-- TODO: og:url y og:image absolutos cuando exista la URL de GitHub Pages -->
 
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
 
@@ -109,7 +110,7 @@
               Ver proyectos
               <svg class="icon icon--nudge-down" aria-hidden="true"><use href="#i-arrow-down"/></svg>
             </a>
-            <a class="btn btn--ghost" href="mailto:TODO-correo@example.com" data-profile-email-link>
+            <a class="btn btn--ghost" href="mailto:jhonrysprzhh@gmail.com" data-profile-email-link>
               <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>
               Escribirme
             </a>
@@ -159,6 +160,15 @@
       <div class="wrap split">
         <header class="split__head">
           <h2 class="section__title" id="about-title">Sobre mí</h2>
+          <div class="portrait">
+            <img
+              src="assets/img/profile/jhon-reyes-360.webp"
+              srcset="assets/img/profile/jhon-reyes-360.webp 360w, assets/img/profile/jhon-reyes-640.webp 640w"
+              sizes="(min-width: 768px) 18rem, 70vw"
+              width="360" height="480"
+              alt="Retrato de Jhon Reyes con saco oscuro y camisa blanca"
+              loading="lazy" decoding="async">
+          </div>
         </header>
         <div class="split__body">
           <p class="statement" data-word-highlight>
@@ -169,13 +179,21 @@
             <p>Hoy sigo fortaleciendo mis conocimientos en arquitectura de software y buenas prácticas de desarrollo.</p>
           </div>
 
-          <h3 class="subhead">En qué he trabajado</h3>
+          <h3 class="subhead">Lo que he trabajado hasta ahora</h3>
           <ul class="focus-list" role="list">
             <li><strong>APIs REST</strong> con Spring Boot, organizadas por capas o con MVC.</li>
-            <li><strong>Seguridad</strong> con Spring Security, JWT y permisos por rol.</li>
-            <li><strong>Bases de datos</strong> en PostgreSQL y MySQL, con triggers y eventos programados.</li>
-            <li><strong>Automatización</strong> de procesos con n8n y servicios en Docker.</li>
+            <li><strong>Seguridad</strong> con Spring Security, autenticación JWT y control de acceso por roles.</li>
+            <li><strong>Bases de datos relacionales</strong> en PostgreSQL y MySQL: modelado, más de 20 triggers y eventos programados.</li>
+            <li><strong>Interfaces web</strong> con HTML, CSS y JavaScript, desde una tienda de música responsive hasta el seguimiento de obras de construcción.</li>
+            <li><strong>Mapas interactivos</strong> con Leaflet.js e integración de APIs externas.</li>
+            <li><strong>Automatización</strong> de procesos con n8n y servicios en contenedores con Docker.</li>
+            <li><strong>Hackathons</strong> como SmartCity Fix y NeoMetro, llevando una idea a una plataforma funcional.</li>
+            <li><strong>Fundamentos de programación</strong> con Python: ejercicios y estructuras fundamentales.</li>
           </ul>
+          <a class="link focus-more" href="#proyectos">
+            Ver todos los proyectos
+            <svg class="icon icon--nudge-down" aria-hidden="true"><use href="#i-arrow-down"/></svg>
+          </a>
         </div>
       </div>
     </section>
@@ -184,7 +202,7 @@
       <div class="wrap split">
         <header class="split__head">
           <h2 class="section__title" id="stack-title">Stack tecnológico</h2>
-          <p class="section__intro">Las tecnologías que uso en mis proyectos. Las resaltadas son mi base de trabajo.</p>
+          <p class="section__intro">Las tecnologías que uso en mis proyectos. Las marcadas como principales son mi base de trabajo.</p>
         </header>
         <div class="split__body">
           <div class="stack" data-skills aria-busy="true">
@@ -227,7 +245,7 @@
 
         <div class="split__body contact">
           <div class="contact__direct">
-            <a class="contact__email" href="mailto:TODO-correo@example.com" data-profile-email-link data-profile-email-text>TODO-correo@example.com</a>
+            <a class="contact__email" href="mailto:jhonrysprzhh@gmail.com" data-profile-email-link data-profile-email-text>jhonrysprzhh@gmail.com</a>
             <div class="contact__actions">
               <button class="btn btn--ghost btn--sm" type="button" data-copy-email>
                 <span class="swap">

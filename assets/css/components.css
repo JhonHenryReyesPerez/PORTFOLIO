@@ -459,6 +459,75 @@
   }
 }
 
+/* Tecnología con su logo */
+.techs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+  gap: var(--space-2);
+}
+
+.tech {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 3.25rem;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background-color: var(--bg);
+  font-size: var(--step--1);
+  font-weight: 500;
+  line-height: 1.25;
+  transition: border-color var(--dur-fast) ease;
+}
+
+.tech__logo {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  color: var(--text);
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.tech--primary {
+  border-color: var(--accent);
+  background-color: var(--accent-soft);
+}
+
+.tech__badge {
+  position: absolute;
+  top: -0.6rem;
+  right: var(--space-2);
+  padding: 1px 6px;
+  border-radius: var(--radius-pill);
+  background-color: var(--accent);
+  color: var(--on-accent);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tech:hover {
+    border-color: var(--border-strong);
+  }
+
+  .tech--primary:hover {
+    border-color: var(--accent);
+  }
+
+  .tech:hover .tech__logo {
+    transform: scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech:hover .tech__logo {
+    transform: none;
+  }
+}
+
 /* ---------- Filtros ---------- */
 .filters {
   margin-bottom: var(--space-6);
