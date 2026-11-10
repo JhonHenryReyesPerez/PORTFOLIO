@@ -56,6 +56,15 @@
   --text-faint: #8f8a80; /* palabras aún apagadas de la frase (3.1:1, texto grande) */
   --accent-glow: rgb(163 72 11 / 0.10);
   --grid-dot: rgb(23 25 30 / 0.22);
+  /* Segundo acento y tonos por proyecto (todos >= 4.5:1 sobre el fondo) */
+  --accent-2: #0d6f67;
+  --aurora-opacity: 0.5;
+  --tint-blue: #1d5fd6;
+  --tint-amber: #a55208;
+  --tint-green: #167238;
+  --tint-teal: #0d6f67;
+  --tint-sky: #0369a1;
+  --on-tint: #ffffff;
   --accent: #a3480b;
   --accent-hover: #873a07;
   --on-accent: #ffffff;
@@ -89,6 +98,14 @@
     --text-faint: #646973;
     --accent-glow: rgb(240 160 75 / 0.11);
     --grid-dot: rgb(235 233 228 / 0.2);
+    --accent-2: #34d3bf;
+    --aurora-opacity: 0.42;
+    --tint-blue: #6aa8ff;
+    --tint-amber: #f5b942;
+    --tint-green: #5bd98a;
+    --tint-teal: #34d3bf;
+    --tint-sky: #4cc3f5;
+    --on-tint: #101216;
     --accent: #f0a04b;
     --accent-hover: #f6b673;
     --on-accent: #1b1206;
@@ -120,6 +137,14 @@
   --text-faint: #646973;
   --accent-glow: rgb(240 160 75 / 0.11);
   --grid-dot: rgb(235 233 228 / 0.2);
+  --accent-2: #34d3bf;
+  --aurora-opacity: 0.42;
+  --tint-blue: #6aa8ff;
+  --tint-amber: #f5b942;
+  --tint-green: #5bd98a;
+  --tint-teal: #34d3bf;
+  --tint-sky: #4cc3f5;
+  --on-tint: #101216;
   --accent: #f0a04b;
   --accent-hover: #f6b673;
   --on-accent: #1b1206;
