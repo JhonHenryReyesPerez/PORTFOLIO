@@ -1,5 +1,5 @@
 ### Claves locales (nunca se versionan) ###
-config/
+/config/
 .env*
 
 target/
