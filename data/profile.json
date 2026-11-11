@@ -8,6 +8,15 @@
     "Soy desarrollador de software en formación, con enfoque en el backend con Java y Spring Boot. Tengo experiencia académica y práctica construyendo aplicaciones web, APIs REST, bases de datos relacionales e integraciones con herramientas de automatización.",
     "Me interesa escribir soluciones bien estructuradas y entender la lógica detrás de cada implementación. Hoy sigo fortaleciendo mis conocimientos en arquitectura de software y buenas prácticas de desarrollo."
   ],
+  "education": [
+    { "title": "Desarrollo backend", "institution": "Campuslands, Floridablanca", "period": "Diciembre 2025 – actualidad", "status": "en formación" },
+    { "title": "Técnico en instalación de sistemas eléctricos", "institution": "SENA, Floridablanca", "period": "Noviembre 2025" },
+    { "title": "Bachiller", "institution": "Colegio Técnico Vicente Azuero", "period": "Noviembre 2025" }
+  ],
+  "languages": [
+    { "name": "Español", "level": "nativo" },
+    { "name": "Inglés", "level": "A2.3, en formación" }
+  ],
   "contact": {
     "email": "jhonrysprzhh@gmail.com",
     "linkedin": "https://www.linkedin.com/in/jhon-reyes-6b76b63aa/",

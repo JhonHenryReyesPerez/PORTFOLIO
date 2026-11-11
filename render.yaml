@@ -1,0 +1,22 @@
+# Blueprint de Render para la API del asistente (api/).
+# En Render: New > Blueprint > este repositorio. La clave de DeepSeek se escribe
+# en el panel de Render cuando la pide (sync: false); nunca va en el repositorio.
+services:
+  - type: web
+    name: jhon-portfolio-api
+    runtime: docker
+    plan: free
+    branch: main
+    dockerfilePath: ./api/Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    autoDeploy: true
+    buildFilter:
+      paths:
+        - api/**
+        - data/**
+    envVars:
+      - key: DEEPSEEK_API_KEY
+        sync: false
+      - key: ASSISTANT_ALLOWED_ORIGINS
+        value: https://jhonhenryreyesperez.github.io

@@ -1,0 +1,6 @@
+# Solo la API y los datos entran en la imagen
+*
+!api/
+!data/
+api/target/
+api/config/
