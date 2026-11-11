@@ -2,7 +2,7 @@
 
 Portafolio profesional de **Jhon Reyes**, desarrollador de software backend con Java, Spring Boot y PostgreSQL. Reúne los proyectos construidos durante el entrenamiento, el stack tecnológico y una forma directa de contacto.
 
-**Sitio en línea:** _TODO: URL de GitHub Pages_
+**Sitio en línea:** [jhonhenryreyesperez.github.io/PORTFOLIO](https://jhonhenryreyesperez.github.io/PORTFOLIO/)
 
 <!-- TODO: captura o GIF del portafolio -->
 
@@ -87,4 +87,4 @@ El workflow `.github/workflows/deploy.yml` publica en GitHub Pages en cada push 
 
 ## Autor
 
-**Jhon Reyes** · [jhonrysprzhh@gmail.com](mailto:jhonrysprzhh@gmail.com) · _TODO: enlaces a LinkedIn y GitHub_
+**Jhon Reyes** · [jhonrysprzhh@gmail.com](mailto:jhonrysprzhh@gmail.com) · [LinkedIn](https://www.linkedin.com/in/jhon-reyes-6b76b63aa/) · [GitHub](https://github.com/JhonHenryReyesPerez)

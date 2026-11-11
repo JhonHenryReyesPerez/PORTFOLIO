@@ -313,7 +313,7 @@ Confirmar con el usuario cuál se hará antes de empezarlo. El sitio principal d
 
 ### Datos pendientes (pedir al usuario, no inventar)
 - [ ] URLs de los repositorios de cada proyecto y de las demos.
-- [ ] Correo de contacto, URL de LinkedIn y usuario de GitHub.
+- [x] Correo de contacto, URL de LinkedIn y usuario de GitHub.
 - [ ] Foto de perfil y capturas de cada proyecto.
 - [ ] CV en PDF.
 - [ ] Preferencia de colores (si tiene una).
