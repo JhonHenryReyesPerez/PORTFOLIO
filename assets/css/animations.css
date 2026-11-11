@@ -1,0 +1,99 @@
+/* =========================================================
+   Animaciones
+   Coreografía de la entrada del hero (una vez por visita):
+   | Elemento        | Rol     | Inicio | Duración | Movimiento         |
+   | Nombre (h1)     | Lead    | 0ms    | 600ms    | fade + 14px        |
+   | Rol             | Support | 90ms   | 560ms    | fade + 10px        |
+   | Descripción     | Support | 150ms  | 520ms    | fade + 8px         |
+   | Botones         | Support | 200ms  | 520ms    | fade + 6px         |
+   | Panel petición  | Support | 240ms  | 600ms    | fade + 8px + 0.98  |
+   El fondo, la cabecera y la navegación no se mueven.
+   Es CSS puro: no depende de JavaScript y el contenido nunca queda oculto.
+   ========================================================= */
+@keyframes enter-rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--enter-distance, 12px));
+  }
+}
+
+@keyframes enter-panel {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+}
+
+@keyframes enter-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+.enter {
+  animation: enter-rise var(--enter-duration, 560ms) var(--ease-out) both;
+}
+
+.enter--1 { --enter-distance: 14px; --enter-duration: 600ms; animation-delay: 0ms; }
+.enter--2 { --enter-distance: 10px; animation-delay: 90ms; }
+.enter--3 { --enter-distance: 8px; --enter-duration: 520ms; animation-delay: 150ms; }
+.enter--4 { --enter-distance: 6px; --enter-duration: 520ms; animation-delay: 200ms; }
+
+.enter--panel {
+  animation: enter-panel 600ms var(--ease-out) 240ms both;
+}
+
+/* Líneas del JSON al llegar la respuesta: una sola onda corta */
+.json-line {
+  display: block;
+  animation: enter-fade 280ms var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 28ms);
+}
+
+/* Filas de proyectos en espera de su entrada (solo las marca JavaScript) */
+.is-pending {
+  opacity: 0;
+}
+
+@media print {
+  .is-pending {
+    opacity: 1;
+  }
+}
+
+/* Movimiento reducido: sin desplazamientos, solo un fundido breve y simultáneo */
+@media (prefers-reduced-motion: reduce) {
+  .enter,
+  .enter--panel {
+    animation: enter-fade 200ms ease both;
+    animation-delay: 0ms;
+  }
+
+  .json-line {
+    animation: none;
+  }
+
+  /* Se conservan los fundidos de opacidad; se eliminan los desplazamientos */
+  .nav__panel,
+  .nav__panel.is-open,
+  .to-top,
+  .to-top.is-visible {
+    transform: none;
+  }
+
+  .toast,
+  .toast.is-visible {
+    transform: translate(-50%, 0);
+  }
+
+  .btn:active,
+  .filter:active,
+  .icon-btn:active,
+  .to-top:active {
+    transform: none;
+  }
+
+  .project__figure img {
+    transition: none;
+  }
+}

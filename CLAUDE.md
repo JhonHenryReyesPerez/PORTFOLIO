@@ -40,7 +40,7 @@ Requisitos adicionales del enunciado (obligatorios aunque no tengan puntaje expl
 - **HTML5 + CSS3 + JavaScript vanilla (ES Modules)**, sin build step. GitHub Pages lo sirve tal cual.
 - **Sin frameworks CSS** en el sitio principal: CSS propio con custom properties, Flexbox y Grid. Esto demuestra dominio de fundamentos.
 - **Datos dinámicos en JSON local** (`/data/*.json`) consumidos con `fetch()`.
-- **Fuentes:** máximo 2 familias de Google Fonts (p. ej. `Inter` para texto y `JetBrains Mono` para detalles de código), con `display=swap` y `preconnect`.
+- **Fuentes:** `IBM Plex Sans` (texto y títulos) e `IBM Plex Mono` (solo para código y datos, nunca como adorno), desde Google Fonts con `display=swap` y `preconnect`.
 - **Iconos:** SVG inline o un sprite SVG local. Nada de librerías pesadas de iconos.
 - **Sin dependencias en runtime** salvo que se justifique. Las herramientas de desarrollo (linters, tests) van en `package.json` como `devDependencies`.
 
@@ -90,12 +90,15 @@ Reglas:
 │   │   └── animations.css
 │   ├── js/
 │   │   ├── main.js           # punto de entrada (type="module")
-│   │   ├── api.js            # funciones fetch a /data
-│   │   ├── render.js         # pinta tarjetas y secciones dinámicas
-│   │   ├── nav.js            # menú móvil, scroll spy, navbar
+│   │   ├── api.js            # fetch a /data con caché, estado HTTP y tiempo
+│   │   ├── dom.js            # el(), icon(), errorNote(), prefersReducedMotion()
+│   │   ├── request-panel.js  # panel del hero (GET data/profile.json)
+│   │   ├── skills.js         # stack desde skills.json
+│   │   ├── projects.js       # proyectos, filtros y su coreografía
+│   │   ├── nav.js            # menú móvil, scroll spy, cabecera, volver arriba
 │   │   ├── theme.js          # modo claro/oscuro
-│   │   ├── animations.js     # IntersectionObserver
-│   │   └── contact.js        # formulario → mailto
+│   │   ├── contact.js        # correo, redes, formulario → mailto
+│   │   └── toast.js          # avisos breves
 │   ├── img/
 │   │   ├── profile/
 │   │   └── projects/
@@ -120,9 +123,9 @@ Reglas:
   <main id="main">
     <section id="inicio" aria-labelledby="...">     → hero: nombre (único <h1>), rol, CTA
     <section id="sobre-mi">                          → <h2>Sobre mí</h2>
-    <section id="habilidades">                       → <h2> + grupos con <h3>
-    <section id="proyectos">                         → <h2> + <article> por proyecto (<h3>)
-    <section id="otros-proyectos">                   → <h2> + lista
+    <section id="stack">                             → <h2> + grupos con <h3>
+    <section id="proyectos">                         → <h2> + filtros + <article> por proyecto (<h3>)
+                                                       + <h3>Otros proyectos</h3> con lista
     <section id="contacto">                          → <h2> + formulario + enlaces
   </main>
   <footer>            → redes, copyright, volver arriba
@@ -223,6 +226,13 @@ Criterio: movimiento con propósito, no decoración. Detalle de cómo hacerlo en
 - **Transiciones de estado:** navbar (transparente → sólida al hacer scroll), menú móvil, cambio de tema, toast de "correo copiado".
 - **Evitar** (regla compartida por Taste y Emil): fade-in en cada sección o en cada tarjeta al hacer scroll, parallax en texto, scroll-jacking, tilt 3D, carruseles automáticos. Como máximo un *reveal* sutil por sección importante, nunca por elemento.
 - Animar solo `transform` y `opacity` (rendimiento). Duraciones entre 150 ms y 400 ms para UI; easing tipo `ease-out` para entradas.
+- **Presupuesto de efectos (lleno, no agregar más sin quitar otro)** — `assets/css/effects.css` + `assets/js/motion/`:
+  - 1 efecto de puntero: spotlight con rejilla de puntos en el hero (`spotlight.js`).
+  - Fondo: aurora del hero (3 luces de color, 24–32 s, se pausa con el botón de la cinta vía `.is-motion-paused` en `<html>`).
+  - 2 momentos: cinta de tecnologías con pausa (`marquee.js`) y frase que se enciende al hacer scroll en Sobre mí (`word-highlight.js`).
+  - Paneles visuales por proyecto (`project-card.js` + `projects.css`): 2 diagramas con pulsos (CampusDesk, SmartCity Fix), módulos MVC y esquema de BD que se iluminan en secuencia, todos 3 ciclos y reposo; captura de demo en marco de navegador. Cada proyecto tiene un tono (`tint` en `projects.json` → `--tint-*` en `tokens.css`).
+  - Bloque de contacto (CTA) con degradado accent → accent-2 y brillo en el botón primario.
+  - Micro-interacciones: indicador de filtros con `clip-path`, intercambio de iconos (tema, copiar), reenviar petición.
 - **Obligatorio:** `@media (prefers-reduced-motion: reduce)` desactiva o reduce todas las animaciones.
 - Las animaciones nunca deben ocultar contenido si el JS falla (el contenido es visible por defecto; la clase de animación se agrega desde JS).
 
@@ -303,7 +313,7 @@ Confirmar con el usuario cuál se hará antes de empezarlo. El sitio principal d
 
 ### Datos pendientes (pedir al usuario, no inventar)
 - [ ] URLs de los repositorios de cada proyecto y de las demos.
-- [ ] Correo de contacto, URL de LinkedIn y usuario de GitHub.
+- [x] Correo de contacto, URL de LinkedIn y usuario de GitHub.
 - [ ] Foto de perfil y capturas de cada proyecto.
 - [ ] CV en PDF.
 - [ ] Preferencia de colores (si tiene una).

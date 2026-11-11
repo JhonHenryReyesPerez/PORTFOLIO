@@ -1,0 +1,47 @@
+[
+  {
+    "id": "lenguajes",
+    "label": "Lenguajes",
+    "items": [
+      { "name": "Java", "icon": "openjdk", "primary": true },
+      { "name": "JavaScript", "icon": "javascript" },
+      { "name": "Python", "icon": "python" },
+      { "name": "SQL", "icon": "sql" }
+    ]
+  },
+  {
+    "id": "backend",
+    "label": "Backend",
+    "items": [
+      { "name": "Spring Boot", "icon": "springboot", "primary": true },
+      { "name": "Spring Security", "icon": "springsecurity" },
+      { "name": "Spring Data JPA", "icon": "spring" }
+    ]
+  },
+  {
+    "id": "bases-de-datos",
+    "label": "Bases de datos",
+    "items": [
+      { "name": "PostgreSQL", "icon": "postgresql", "primary": true },
+      { "name": "MySQL", "icon": "mysql" }
+    ]
+  },
+  {
+    "id": "frontend",
+    "label": "Frontend",
+    "items": [
+      { "name": "HTML5", "icon": "html5" },
+      { "name": "CSS3", "icon": "css" }
+    ]
+  },
+  {
+    "id": "herramientas",
+    "label": "Herramientas",
+    "items": [
+      { "name": "Git", "icon": "git" },
+      { "name": "Docker", "icon": "docker" },
+      { "name": "Linux", "icon": "linux" },
+      { "name": "n8n", "icon": "n8n" }
+    ]
+  }
+]

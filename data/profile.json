@@ -1,0 +1,17 @@
+{
+  "name": "Jhon Reyes",
+  "role": "Desarrollador de Software",
+  "focus": "backend",
+  "status": "en formación",
+  "stack": ["Java", "Spring Boot", "PostgreSQL"],
+  "summary": [
+    "Soy desarrollador de software en formación, con enfoque en el backend con Java y Spring Boot. Tengo experiencia académica y práctica construyendo aplicaciones web, APIs REST, bases de datos relacionales e integraciones con herramientas de automatización.",
+    "Me interesa escribir soluciones bien estructuradas y entender la lógica detrás de cada implementación. Hoy sigo fortaleciendo mis conocimientos en arquitectura de software y buenas prácticas de desarrollo."
+  ],
+  "contact": {
+    "email": "jhonrysprzhh@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/jhon-reyes-6b76b63aa/",
+    "github": "https://github.com/JhonHenryReyesPerez",
+    "cv": null
+  }
+}

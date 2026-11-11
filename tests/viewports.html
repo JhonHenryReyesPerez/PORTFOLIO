@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Prueba de viewports</title>
+  <style>
+    body { margin: 0; padding: 16px; display: flex; gap: 24px; align-items: flex-start; background: #888; font: 14px system-ui; }
+    figure { margin: 0; }
+    figcaption { color: #fff; margin-bottom: 6px; }
+    iframe { border: 0; background: #fff; display: block; }
+  </style>
+</head>
+<body>
+  <!-- Herramienta manual de testing: muestra el sitio en anchos exactos de dispositivo.
+       Abrir con un servidor local: http://127.0.0.1:5500/tests/viewports.html -->
+  <figure><figcaption>320 px</figcaption><iframe src="../index.html" width="320" height="2400" title="Sitio a 320 px"></iframe></figure>
+  <figure><figcaption>390 px</figcaption><iframe src="../index.html" width="390" height="2400" title="Sitio a 390 px"></iframe></figure>
+  <figure><figcaption>768 px</figcaption><iframe src="../index.html" width="768" height="2400" title="Sitio a 768 px"></iframe></figure>
+</body>
+</html>
