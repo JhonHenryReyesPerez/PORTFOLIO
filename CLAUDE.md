@@ -327,7 +327,7 @@ Para sumar el plus sin complicar el sitio principal, la opción recomendada es c
 - [x] CV en PDF.
 - [ ] Preferencia de colores (si tiene una).
 - [x] Opción elegida para el plus framework (§15): API Spring Boot del asistente.
-- [ ] URL pública de la API en Render (para `assistant-endpoint`).
+- [x] URL pública de la API en Render: https://jhon-portfolio-api.onrender.com
 - [ ] Licencia u origen de la ilustración de la nutria (`assets/img/Mascota.png`).
 
 ## 17. Reglas para Claude
