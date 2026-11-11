@@ -9,7 +9,7 @@ Portafolio profesional de **Jhon Reyes**, desarrollador de software backend con 
 ## Funcionalidades
 
 - **Responsive, mobile-first:** probado de 320 px a 1440 px, sin scroll horizontal.
-- **Tema claro y oscuro:** sigue la preferencia del sistema y recuerda la elección del usuario.
+- **Tema claro y oscuro:** sigue la preferencia del sistema y recuerda la elección del usuario. El tema claro usa un lenguaje de cristal inspirado en iOS (Liquid Glass): un campo de color fijo detrás de la página, paneles de vidrio esmerilado con borde de luz y una cabecera en cápsula flotante. Con `prefers-reduced-transparency` el vidrio pasa a superficies sólidas.
 - **Carga dinámica con peticiones locales:** el stack, los proyectos y el perfil se cargan con `fetch()` desde archivos JSON en `data/`. El panel del inicio muestra la petición real a `data/profile.json` con su estado HTTP y su tiempo de respuesta.
 - **Proyectos con enlace al repositorio y a la demo** cuando existe.
 - **Filtro de proyectos por categoría**, con botones accesibles (`aria-pressed`) y anuncio del resultado a lectores de pantalla.
@@ -36,7 +36,7 @@ Portafolio profesional de **Jhon Reyes**, desarrollador de software backend con 
 ├── index.html
 ├── 404.html
 ├── assets/
-│   ├── css/      reset, tokens (colores y tipografía), base, layout, componentes y animaciones
+│   ├── css/      reset, tokens (colores y tipografía), base, layout, componentes, animaciones, efectos y cristal (glass.css)
 │   ├── js/       un módulo por responsabilidad (api, proyectos, stack, navegación, tema, contacto)
 │   ├── icons/
 │   └── img/

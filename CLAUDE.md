@@ -87,7 +87,10 @@ Reglas:
 │   │   ├── base.css
 │   │   ├── layout.css
 │   │   ├── components.css
-│   │   └── animations.css
+│   │   ├── animations.css
+│   │   ├── effects.css
+│   │   ├── projects.css
+│   │   └── glass.css         # cristal del tema claro
 │   ├── js/
 │   │   ├── main.js           # punto de entrada (type="module")
 │   │   ├── api.js            # fetch a /data con caché, estado HTTP y tiempo
@@ -156,6 +159,7 @@ Reglas:
 - **Contraste mínimo WCAG AA:** 4.5:1 en texto normal, 3:1 en texto grande e iconos/bordes de controles. Verificar cada combinación.
 - Modo claro y oscuro: respeta `prefers-color-scheme` por defecto y permite cambiarlo con un botón; guardar la elección en `localStorage` (envuelto en `try/catch`).
 - Nunca transmitir información solo con color.
+- **Tema claro = cristal (iOS / Liquid Glass)** en `assets/css/glass.css`: campo de color fijo (`--page-mesh`), paneles con `--glass-*` y cabecera en cápsula al hacer scroll. Los tokens `--glass-*` valen `initial` en el tema oscuro, así que cada regla usa `var(--glass-x, <valor del oscuro>)` y el oscuro no cambia. `backdrop-filter` solo en cabecera, menú móvil, botón volver arriba y formulario de contacto (rendimiento). Respeta `prefers-reduced-transparency`.
 
 ## 8. Imágenes optimizadas
 
