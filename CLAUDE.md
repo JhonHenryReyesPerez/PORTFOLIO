@@ -315,7 +315,7 @@ Confirmar con el usuario cuál se hará antes de empezarlo. El sitio principal d
 - [ ] URLs de los repositorios de cada proyecto y de las demos.
 - [x] Correo de contacto, URL de LinkedIn y usuario de GitHub.
 - [ ] Foto de perfil y capturas de cada proyecto.
-- [ ] CV en PDF.
+- [x] CV en PDF.
 - [ ] Preferencia de colores (si tiene una).
 - [ ] Opción elegida para el plus framework (§15).
 
