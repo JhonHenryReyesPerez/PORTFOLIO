@@ -9,6 +9,8 @@
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#e6e9f0" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#101216" media="(prefers-color-scheme: dark)">
+  <!-- URL pública de la API del asistente (api/, desplegada en Render). Vacía = el asistente no se muestra. -->
+  <meta name="assistant-endpoint" content="">
 
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_CO">
@@ -40,6 +42,7 @@
   <link rel="stylesheet" href="assets/css/projects.css">
   <link rel="stylesheet" href="assets/css/effects.css">
   <link rel="stylesheet" href="assets/css/glass.css">
+  <link rel="stylesheet" href="assets/css/assistant.css">
 
   <script type="module" src="assets/js/main.js"></script>
 </head>
@@ -50,6 +53,7 @@
     <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z"/></symbol>
     <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
     <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
     <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
     <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
     <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
@@ -318,6 +322,57 @@
   <a class="to-top" href="#inicio" data-to-top aria-label="Volver arriba">
     <svg class="icon" aria-hidden="true"><use href="#i-arrow-up"/></svg>
   </a>
+
+  <!-- Asistente con IA: oculto hasta que JavaScript confirma que hay una API configurada -->
+  <aside class="assistant" aria-label="Asistente" data-assistant hidden>
+    <section class="assistant__panel" id="assistant-panel" role="dialog" aria-labelledby="assistant-title" data-assistant-panel hidden>
+      <header class="assistant__head">
+        <img class="assistant__avatar" src="assets/img/mascot/otter-160.webp"
+          srcset="assets/img/mascot/otter-160.webp 160w, assets/img/mascot/otter-320.webp 320w"
+          sizes="48px" width="160" height="242" alt="" loading="lazy" decoding="async" data-assistant-avatar>
+        <div class="assistant__heading">
+          <h2 class="assistant__title" id="assistant-title">Asistente de Jhon</h2>
+          <p class="assistant__status" data-assistant-status>Pregúntame por su perfil, stack y proyectos</p>
+        </div>
+        <button class="icon-btn" type="button" aria-label="Cerrar el asistente" data-assistant-close>
+          <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+        </button>
+      </header>
+
+      <ol class="assistant__log" role="log" aria-live="polite" aria-label="Conversación" data-assistant-log>
+        <li class="msg msg--bot">¡Hola! Soy la nutria asistente de Jhon. Puedo contarte sobre sus proyectos, su stack y cómo contactarlo.</li>
+      </ol>
+
+      <ul class="assistant__suggestions" aria-label="Preguntas sugeridas" data-assistant-suggestions>
+        <li><button class="suggestion" type="button">¿Qué proyectos ha hecho?</button></li>
+        <li><button class="suggestion" type="button">¿Qué tecnologías maneja?</button></li>
+        <li><button class="suggestion" type="button">¿Cómo lo contacto?</button></li>
+      </ul>
+
+      <form class="assistant__form" data-assistant-form>
+        <label class="visually-hidden" for="assistant-input">Tu pregunta</label>
+        <textarea class="assistant__input" id="assistant-input" name="question" rows="1" maxlength="600"
+          placeholder="Escribe tu pregunta…" autocomplete="off" required data-assistant-input></textarea>
+        <button class="assistant__send" type="submit" aria-label="Enviar pregunta" data-assistant-send>
+          <svg class="icon" aria-hidden="true"><use href="#i-send"/></svg>
+        </button>
+      </form>
+
+      <p class="assistant__note">
+        Respuestas generadas con IA (DeepSeek); pueden tener errores. Para algo importante,
+        <a href="mailto:jhonrysprzhh@gmail.com" data-profile-email-link>escríbele a Jhon</a>.
+      </p>
+    </section>
+
+    <p class="assistant__hint" aria-hidden="true" data-assistant-hint>¿Preguntas sobre Jhon? <strong>Pregúntame</strong></p>
+
+    <button class="assistant__launcher" type="button" aria-expanded="false" aria-controls="assistant-panel" data-assistant-toggle>
+      <img class="assistant__face" src="assets/img/mascot/otter-head-64.webp"
+        srcset="assets/img/mascot/otter-head-64.webp 64w, assets/img/mascot/otter-head-128.webp 128w"
+        sizes="56px" width="64" height="64" alt="" decoding="async">
+      <span class="visually-hidden" data-assistant-toggle-label>Abrir el asistente</span>
+    </button>
+  </aside>
 
   <div class="toast" role="status" aria-live="polite" data-toast></div>
 </body>

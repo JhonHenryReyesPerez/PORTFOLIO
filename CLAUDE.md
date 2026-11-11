@@ -101,8 +101,10 @@ Reglas:
 │   │   ├── nav.js            # menú móvil, scroll spy, cabecera, volver arriba
 │   │   ├── theme.js          # modo claro/oscuro
 │   │   ├── contact.js        # correo, redes, formulario → mailto
-│   │   └── toast.js          # avisos breves
+│   │   ├── toast.js          # avisos breves
+│   │   └── assistant/        # launcher.js (botón, carga diferida) + chat.js (ventana de chat)
 │   ├── img/
+│   │   ├── mascot/           # nutria del asistente (WebP)
 │   │   ├── profile/
 │   │   └── projects/
 │   ├── icons/
@@ -111,6 +113,8 @@ Reglas:
 │   ├── profile.json
 │   ├── skills.json
 │   └── projects.json
+├── api/                      # API del asistente (Spring Boot 4, Java 21) — el plus (§15)
+├── render.yaml               # despliegue de la API en Render (Docker)
 ├── tests/
 ├── .github/workflows/deploy.yml
 ├── README.md
@@ -159,7 +163,7 @@ Reglas:
 - **Contraste mínimo WCAG AA:** 4.5:1 en texto normal, 3:1 en texto grande e iconos/bordes de controles. Verificar cada combinación.
 - Modo claro y oscuro: respeta `prefers-color-scheme` por defecto y permite cambiarlo con un botón; guardar la elección en `localStorage` (envuelto en `try/catch`).
 - Nunca transmitir información solo con color.
-- **Tema claro = cristal (iOS / Liquid Glass)** en `assets/css/glass.css`: campo de color fijo (`--page-mesh`), paneles con `--glass-*` y cabecera en cápsula al hacer scroll. Los tokens `--glass-*` valen `initial` en el tema oscuro, así que cada regla usa `var(--glass-x, <valor del oscuro>)` y el oscuro no cambia. `backdrop-filter` solo en cabecera, menú móvil, botón volver arriba y formulario de contacto (rendimiento). Respeta `prefers-reduced-transparency`.
+- **Tema claro = cristal (iOS / Liquid Glass)** en `assets/css/glass.css`: campo de color fijo (`--page-mesh`), paneles con `--glass-*` y cabecera en cápsula al hacer scroll. Los tokens `--glass-*` valen `initial` en el tema oscuro, así que cada regla usa `var(--glass-x, <valor del oscuro>)` y el oscuro no cambia. `backdrop-filter` solo en cabecera, menú móvil, botón volver arriba, formulario de contacto y ventana del asistente (rendimiento). Respeta `prefers-reduced-transparency`.
 
 ## 8. Imágenes optimizadas
 
@@ -236,6 +240,7 @@ Criterio: movimiento con propósito, no decoración. Detalle de cómo hacerlo en
   - 2 momentos: cinta de tecnologías con pausa (`marquee.js`) y frase que se enciende al hacer scroll en Sobre mí (`word-highlight.js`).
   - Paneles visuales por proyecto (`project-card.js` + `projects.css`): 2 diagramas con pulsos (CampusDesk, SmartCity Fix), módulos MVC y esquema de BD que se iluminan en secuencia, todos 3 ciclos y reposo; captura de demo en marco de navegador. Cada proyecto tiene un tono (`tint` en `projects.json` → `--tint-*` en `tokens.css`).
   - Bloque de contacto (CTA) con degradado accent → accent-2 y brillo en el botón primario.
+  - Asistente (`assistant.css`): la nutria se asoma una vez al cargar, se inclina en hover, se balancea mientras piensa y tres puntos de "escribiendo"; la ventana abre con opacidad + escala desde la esquina.
   - Micro-interacciones: indicador de filtros con `clip-path`, intercambio de iconos (tema, copiar), reenviar petición.
 - **Obligatorio:** `@media (prefers-reduced-motion: reduce)` desactiva o reduce todas las animaciones.
 - Las animaciones nunca deben ocultar contenido si el JS falla (el contenido es visible por defecto; la clase de animación se agrega desde JS).
@@ -282,7 +287,7 @@ Para sumar el plus sin complicar el sitio principal, la opción recomendada es c
 - **Recomendado:** una API REST pequeña en **Spring Boot** (p. ej. `GET /api/projects` sirviendo los mismos datos, o un endpoint de contacto) desplegada en un servidor gratuito (Render / Railway) y documentada en el README. El frontend usa los JSON locales y, opcionalmente, puede consumir la API como fuente alternativa.
 - **Alternativa:** una versión del portafolio con un framework frontend (Astro, React + Vite) en una carpeta o repo aparte.
 
-Confirmar con el usuario cuál se hará antes de empezarlo. El sitio principal debe funcionar al 100% sin depender del plus.
+**Elegido:** asistente con IA. API Spring Boot en `api/` (`POST /api/chat`, `GET /api/health`) que llama a DeepSeek con los datos de `data/` como única fuente, desplegada en Render con `render.yaml`. La clave `DEEPSEEK_API_KEY` solo vive en Render o en `api/config/application.properties` (ignorado por Git); nunca en el frontend ni en el chat. El frontend lee la URL de `<meta name="assistant-endpoint">` (en localhost usa `http://localhost:8080`); si está vacía, el asistente no aparece. El sitio principal debe funcionar al 100% sin depender del plus.
 
 ## 16. Contenido del portafolio
 
@@ -321,7 +326,9 @@ Confirmar con el usuario cuál se hará antes de empezarlo. El sitio principal d
 - [ ] Foto de perfil y capturas de cada proyecto.
 - [x] CV en PDF.
 - [ ] Preferencia de colores (si tiene una).
-- [ ] Opción elegida para el plus framework (§15).
+- [x] Opción elegida para el plus framework (§15): API Spring Boot del asistente.
+- [ ] URL pública de la API en Render (para `assistant-endpoint`).
+- [ ] Licencia u origen de la ilustración de la nutria (`assets/img/Mascota.png`).
 
 ## 17. Reglas para Claude
 
