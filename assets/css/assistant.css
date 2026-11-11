@@ -1,0 +1,424 @@
+/* =========================================================
+   Asistente con IA (la nutria)
+   Botón flotante + ventana de chat no modal. Usa los tokens de
+   cristal del tema claro con respaldo a las superficies del oscuro.
+   ========================================================= */
+.assistant {
+  --launcher: 60px;
+  --assistant-bottom: max(var(--space-5), env(safe-area-inset-bottom));
+  --assistant-right: max(var(--gutter), env(safe-area-inset-right));
+  position: fixed;
+  right: var(--assistant-right);
+  bottom: var(--assistant-bottom);
+  z-index: 45;
+}
+
+/* "Volver arriba" se apila sobre la nutria */
+.has-assistant .to-top {
+  bottom: calc(max(var(--space-5), env(safe-area-inset-bottom)) + 72px);
+}
+
+/* ---------- Botón ---------- */
+.assistant__launcher {
+  position: relative;
+  display: block;
+  width: var(--launcher);
+  height: var(--launcher);
+  padding: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid var(--glass-border, var(--border-strong));
+  background:
+    radial-gradient(circle at 50% 35%, color-mix(in oklab, var(--accent) 30%, transparent), transparent 70%),
+    var(--glass-bg-strong, var(--surface));
+  box-shadow: var(--glass-shadow, var(--shadow));
+  transition:
+    transform var(--dur) var(--ease-out),
+    box-shadow var(--dur) var(--ease-out);
+}
+
+.assistant__face {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translateY(6%);
+  transform-origin: 50% 90%;
+  transition: transform 320ms var(--ease-out);
+}
+
+.assistant__launcher:active {
+  transform: scale(0.94);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .assistant__launcher:hover {
+    transform: translateY(-2px);
+  }
+
+  .assistant__launcher:hover .assistant__face {
+    transform: translateY(4%) rotate(-7deg);
+  }
+}
+
+/* Entrada: el botón aparece y la nutria se asoma desde abajo, una sola vez */
+.assistant.is-ready .assistant__launcher {
+  animation: launcher-in 420ms var(--ease-out) 900ms backwards;
+}
+
+.assistant.is-ready .assistant__face {
+  animation: otter-peek 640ms var(--ease-out) 1100ms backwards;
+}
+
+@keyframes launcher-in {
+  from { opacity: 0; transform: scale(0.6); }
+}
+
+@keyframes otter-peek {
+  from { transform: translateY(70%); }
+  to { transform: translateY(6%); }
+}
+
+/* ---------- Globo de ayuda ---------- */
+.assistant__hint {
+  position: absolute;
+  right: calc(100% + 12px);
+  bottom: 10px;
+  padding: 0.5rem 0.875rem;
+  border-radius: 16px 16px 4px 16px;
+  border: 1px solid var(--glass-border, var(--border));
+  background: var(--glass-bg-strong, var(--surface));
+  box-shadow: var(--glass-shadow, var(--shadow));
+  font-size: var(--step--1);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(6px) scale(0.96);
+  transform-origin: right bottom;
+  transition:
+    opacity var(--dur) var(--ease-out),
+    transform var(--dur) var(--ease-out);
+}
+
+.assistant__hint strong {
+  color: var(--accent);
+}
+
+.assistant.has-hint .assistant__hint {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Ventana ---------- */
+.assistant__panel {
+  position: fixed;
+  right: var(--assistant-right);
+  bottom: calc(var(--assistant-bottom) + var(--launcher) + 12px);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto auto auto;
+  width: min(390px, calc(100vw - 2 * var(--assistant-right)));
+  height: min(580px, calc(100dvh - var(--header-h) - var(--launcher) - 56px));
+  border-radius: 22px;
+  border: 1px solid var(--glass-border, var(--border));
+  background: var(--glass-bg-strong, var(--surface));
+  box-shadow: var(--glass-shadow, var(--shadow));
+  -webkit-backdrop-filter: var(--glass-filter, none);
+  backdrop-filter: var(--glass-filter, none);
+  transform-origin: right bottom;
+  opacity: 0;
+  transform: translateY(8px) scale(0.96);
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease;
+}
+
+.assistant.is-open .assistant__panel {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 200ms var(--ease-out),
+    transform 240ms var(--ease-out);
+}
+
+.assistant__head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: end;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-2) var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--glass-border, var(--border));
+}
+
+/* La nutria se asoma por encima del borde de la ventana */
+.assistant__avatar {
+  width: 46px;
+  height: auto;
+  margin-top: -38px;
+  filter: drop-shadow(0 6px 10px rgb(0 0 0 / 0.18));
+  transform-origin: 50% 100%;
+}
+
+.assistant__avatar.is-thinking {
+  animation: otter-think 900ms var(--ease-in-out) infinite alternate;
+}
+
+@keyframes otter-think {
+  from { transform: translateY(0) rotate(0deg); }
+  to { transform: translateY(-3px) rotate(-4deg); }
+}
+
+.assistant__heading {
+  min-width: 0;
+  align-self: center;
+}
+
+.assistant__title {
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.assistant__status {
+  margin-top: 2px;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  line-height: 1.35;
+}
+
+/* ---------- Conversación ---------- */
+.assistant__log {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: var(--space-4);
+  list-style: none;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.msg {
+  max-width: 86%;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+  animation: msg-in 220ms var(--ease-out);
+}
+
+.msg--bot,
+.msg--error {
+  align-self: flex-start;
+  border-radius: 18px 18px 18px 6px;
+  border: 1px solid var(--glass-border, var(--border));
+  background: var(--glass-soft, var(--surface-2));
+  box-shadow: var(--glass-soft-shadow, none);
+}
+
+.msg--error {
+  border-color: var(--danger);
+}
+
+.msg--user {
+  align-self: flex-end;
+  border-radius: 18px 18px 6px 18px;
+  background-color: var(--accent);
+  color: var(--on-accent);
+}
+
+.msg a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@keyframes msg-in {
+  from { opacity: 0; transform: translateY(6px); }
+}
+
+/* Tres puntos mientras responde */
+.msg--typing {
+  display: inline-flex;
+  gap: 5px;
+  padding-block: 0.875rem;
+}
+
+.msg--typing span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--text-muted);
+  animation: typing-dot 1s var(--ease-in-out) infinite;
+}
+
+.msg--typing span:nth-child(2) { animation-delay: 150ms; }
+.msg--typing span:nth-child(3) { animation-delay: 300ms; }
+
+@keyframes typing-dot {
+  0%, 60%, 100% { opacity: 0.35; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-3px); }
+}
+
+/* ---------- Sugerencias ---------- */
+.assistant__suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0 var(--space-4) var(--space-3);
+  list-style: none;
+}
+
+.suggestion {
+  position: relative;
+  min-height: 36px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  background: var(--glass-soft, transparent);
+  color: var(--text);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  transition:
+    border-color var(--dur-fast) ease,
+    transform var(--dur-press) var(--ease-out);
+}
+
+/* Área táctil de 44px sin agrandar la pastilla */
+.suggestion::before {
+  content: "";
+  position: absolute;
+  inset: -4px 0;
+}
+
+.suggestion:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .suggestion:hover {
+    border-color: var(--accent);
+  }
+}
+
+/* ---------- Formulario ---------- */
+.assistant__form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-3) var(--space-2);
+  border-top: 1px solid var(--glass-border, var(--border));
+}
+
+.assistant__input {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  max-height: 7.5rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--border-input);
+  border-radius: 22px;
+  background-color: var(--surface);
+  font-size: 1rem; /* 16px evita el zoom automático en iOS */
+  line-height: 1.4;
+  resize: none;
+  field-sizing: content;
+  transition: border-color var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
+}
+
+.assistant__input:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.assistant__send {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  color: var(--on-accent);
+  transition:
+    background-color var(--dur-fast) ease,
+    transform var(--dur-press) var(--ease-out),
+    opacity var(--dur-fast) ease;
+}
+
+.assistant__send .icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  stroke-width: 2.25;
+}
+
+.assistant__send:active {
+  transform: scale(0.92);
+}
+
+.assistant__send:disabled {
+  opacity: 0.5;
+  cursor: progress;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .assistant__send:not(:disabled):hover {
+    background-color: var(--accent-hover);
+  }
+}
+
+.assistant__note {
+  padding: 0 var(--space-4) var(--space-3);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+
+.assistant__note a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ---------- Móvil: la ventana ocupa el ancho como una hoja inferior ---------- */
+@media (max-width: 479.98px) {
+  .assistant__panel {
+    left: 8px;
+    right: 8px;
+    width: auto;
+    height: min(560px, calc(100dvh - var(--header-h) - var(--launcher) - 48px));
+  }
+
+  .assistant__hint {
+    font-size: 0.8125rem;
+  }
+}
+
+/* ---------- Movimiento reducido: sin desplazamientos, solo opacidad ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .assistant.is-ready .assistant__launcher,
+  .assistant.is-ready .assistant__face,
+  .assistant__avatar.is-thinking,
+  .msg,
+  .msg--typing span {
+    animation: none;
+  }
+
+  .assistant__panel,
+  .assistant.is-open .assistant__panel,
+  .assistant__hint,
+  .assistant.has-hint .assistant__hint {
+    transform: none;
+  }
+
+  .assistant__launcher:hover,
+  .assistant__launcher:hover .assistant__face {
+    transform: none;
+  }
+}
+
+@media print {
+  .assistant {
+    display: none;
+  }
+}
