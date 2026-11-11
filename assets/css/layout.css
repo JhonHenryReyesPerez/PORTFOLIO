@@ -267,6 +267,7 @@
   .hero {
     min-height: min(calc(100svh - var(--header-h)), 54rem);
     display: grid;
+    grid-template-columns: minmax(0, 1fr); /* sin esto, la cinta de tecnologías ensancha la columna */
     grid-template-rows: 1fr auto;
     align-items: center;
     padding-block: var(--space-7) 0;
