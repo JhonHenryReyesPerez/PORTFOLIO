@@ -46,7 +46,8 @@ body::before {
 .site-header__inner::before {
   content: "";
   position: absolute;
-  inset: 8px -14px;
+  /* 14px de aire alrededor del contenido, pero nunca a menos de 8px del borde de la pantalla */
+  inset: 8px max(8px, calc(var(--gutter) - 14px));
   z-index: -1;
   border-radius: var(--radius-pill);
   background: var(--glass-pill, none);
@@ -64,12 +65,6 @@ body::before {
 .site-header.is-scrolled .site-header__inner::before {
   opacity: 1;
   transform: none;
-}
-
-@media (max-width: 767.98px) {
-  .site-header__inner::before {
-    inset: 8px -8px;
-  }
 }
 
 .to-top {
