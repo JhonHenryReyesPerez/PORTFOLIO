@@ -39,7 +39,7 @@ function syncButton(button) {
   const label = button.querySelector('[data-theme-label]');
   if (label) label.textContent = dark ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro';
   document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => {
-    meta.setAttribute('content', dark ? '#101216' : '#f5f3ee');
+    meta.setAttribute('content', dark ? '#101216' : '#e6e9f0');
   });
 }
 

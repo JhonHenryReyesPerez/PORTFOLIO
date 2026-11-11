@@ -1,0 +1,190 @@
+/* =========================================================
+   Cristal (tema claro)
+   Campo de color fijo detrás de la página y superficies de vidrio
+   esmerilado con borde de luz, al estilo de iOS.
+   Cada regla usa los tokens --glass-* con un valor de respaldo:
+   en el tema oscuro esos tokens valen "initial", así que se aplica
+   el respaldo y el oscuro queda exactamente como estaba.
+   ========================================================= */
+
+/* ---------- Campo de color ----------
+   Fijo y estático: no se anima ni se repinta al hacer scroll. */
+body {
+  background-color: var(--body-bg, var(--bg));
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--page-mesh, none);
+}
+
+.section--alt {
+  background-color: var(--glass-section, var(--surface));
+}
+
+/* ---------- Vidrio con desenfoque ----------
+   Solo donde detrás hay contenido con detalle (cabecera, menú, botón
+   flotante, formulario sobre la rejilla). Las tarjetas grandes van sobre
+   un fondo liso: ahí el desenfoque no se notaría y costaría al hacer scroll. */
+.site-header.is-scrolled {
+  -webkit-backdrop-filter: var(--header-filter, saturate(1.4) blur(10px));
+  backdrop-filter: var(--header-filter, saturate(1.4) blur(10px));
+  border-bottom-color: var(--header-line, var(--border));
+}
+
+/* Cápsula flotante de la cabecera (solo tema claro).
+   Va en un pseudo-elemento: un backdrop-filter en el propio contenedor
+   convertiría el menú móvil (position: fixed) en hijo de la cápsula. */
+.site-header__inner {
+  position: relative;
+}
+
+.site-header__inner::before {
+  content: "";
+  position: absolute;
+  inset: 8px -14px;
+  z-index: -1;
+  border-radius: var(--radius-pill);
+  background: var(--glass-pill, none);
+  box-shadow: var(--glass-shadow, none);
+  -webkit-backdrop-filter: var(--glass-filter, none);
+  backdrop-filter: var(--glass-filter, none);
+  opacity: 0;
+  transform: scale(0.98);
+  transition:
+    opacity var(--dur) var(--ease-out),
+    transform var(--dur) var(--ease-out);
+  pointer-events: none;
+}
+
+.site-header.is-scrolled .site-header__inner::before {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 767.98px) {
+  .site-header__inner::before {
+    inset: 8px -8px;
+  }
+}
+
+.to-top {
+  background: var(--glass-bg-strong, var(--surface));
+  border-color: var(--glass-border, var(--border));
+  box-shadow: var(--glass-shadow, var(--shadow));
+  -webkit-backdrop-filter: var(--glass-filter, none);
+  backdrop-filter: var(--glass-filter, none);
+}
+
+.cta__form {
+  background: var(--glass-bg-strong, var(--surface));
+  box-shadow: var(--glass-shadow, 0 20px 50px -20px rgb(0 0 0 / 0.35));
+  -webkit-backdrop-filter: var(--glass-filter, none);
+  backdrop-filter: var(--glass-filter, none);
+}
+
+@media (max-width: 767.98px) {
+  .nav__panel {
+    background: var(--glass-bg-strong, var(--bg));
+    border-top-color: var(--glass-border, var(--border));
+    -webkit-backdrop-filter: var(--glass-filter, none);
+    backdrop-filter: var(--glass-filter, none);
+  }
+}
+
+/* ---------- Paneles de vidrio (sin desenfoque) ---------- */
+.request {
+  background: var(--glass-bg, var(--code-bg));
+  border-color: var(--glass-border, var(--border));
+  box-shadow: var(--glass-shadow, var(--shadow));
+}
+
+.project {
+  position: relative;
+  background: var(--glass-bg, var(--surface));
+  border-color: var(--glass-border, var(--border));
+  box-shadow: var(--glass-shadow, none);
+}
+
+.section--alt .project {
+  background: var(--glass-bg, var(--bg));
+}
+
+.project__visual {
+  background-color: var(--glass-soft, var(--surface-2));
+}
+
+.portrait {
+  border-color: var(--glass-border, var(--border));
+  box-shadow: var(--glass-shadow, var(--shadow));
+}
+
+/* Borde de luz: un degradado de 1px que imita el reflejo del canto del vidrio */
+.request,
+.cta__form {
+  position: relative;
+}
+
+.project::after,
+.request::after,
+.cta__form::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  background: var(--glass-rim, none);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+
+/* ---------- Controles y piezas pequeñas: vidrio ligero ---------- */
+.tech:not(.tech--primary),
+.chip:not(.chip--primary) {
+  background-color: var(--glass-soft, var(--bg));
+  box-shadow: var(--glass-soft-shadow, none);
+}
+
+.tech:not(.tech--primary) {
+  border-color: var(--glass-border, var(--border));
+}
+
+.tech--primary {
+  background-color: var(--glass-accent, var(--accent-soft));
+  box-shadow: var(--glass-soft-shadow, none);
+}
+
+.filter,
+.btn--ghost {
+  background-color: var(--glass-soft, transparent);
+  box-shadow: var(--glass-soft-shadow, none);
+}
+
+/* En el bloque de color de contacto los botones secundarios siguen transparentes */
+.cta .btn--ghost {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.field__input {
+  background-color: var(--glass-bg-strong, var(--bg));
+}
+
+/* ---------- Preferencia de menos transparencia ---------- */
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --page-mesh: none;
+    --glass-bg: var(--surface);
+    --glass-bg-strong: var(--surface);
+    --glass-soft: var(--surface);
+    --glass-filter: none;
+    --glass-pill: var(--surface);
+    --body-bg: var(--bg);
+  }
+}
