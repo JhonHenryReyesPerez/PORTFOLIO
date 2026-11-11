@@ -7,6 +7,7 @@ import { initContact } from './contact.js';
 import { initSpotlight } from './motion/spotlight.js';
 import { initMarquee } from './motion/marquee.js';
 import { initWordHighlight } from './motion/word-highlight.js';
+import { initAssistant } from './assistant/launcher.js';
 
 const year = document.querySelector('[data-year]');
 if (year) year.textContent = String(new Date().getFullYear());
@@ -20,3 +21,4 @@ initRequestPanel();
 initSkills();
 initProjects();
 initContact();
+initAssistant();
