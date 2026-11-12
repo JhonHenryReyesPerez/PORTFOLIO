@@ -13,7 +13,7 @@ Portafolio profesional de **Jhon Reyes**, desarrollador de software backend con 
 - **Carga dinámica con peticiones locales:** el stack, los proyectos y el perfil se cargan con `fetch()` desde archivos JSON en `data/`. El panel del inicio muestra la petición real a `data/profile.json` con su estado HTTP y su tiempo de respuesta.
 - **Proyectos con enlace al repositorio y a la demo** cuando existe.
 - **Filtro de proyectos por categoría**, con botones accesibles (`aria-pressed`) y anuncio del resultado a lectores de pantalla.
-- **Contacto por correo:** enlace `mailto:`, botón para copiar el correo y un formulario validado que abre la aplicación de correo con el asunto y el mensaje listos.
+- **Contacto por correo:** enlace `mailto:`, botón para copiar el correo y un formulario validado que abre la aplicación de correo con el asunto y el mensaje listos. Si el dispositivo no tiene una aplicación de correo configurada (el `mailto:` no hace nada), aparece un panel para escribir desde Gmail u Outlook con el mismo asunto y mensaje, o copiar el correo.
 - **Animaciones con propósito:**
   - Entrada coreografiada del inicio, luz que sigue al cursor con una rejilla de puntos y un fondo de color (aurora) que se mueve muy despacio.
   - Cinta de tecnologías en bucle que solo corre cuando está en pantalla; su botón de pausa detiene también la aurora.

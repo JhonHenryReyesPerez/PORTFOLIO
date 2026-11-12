@@ -761,6 +761,74 @@
   transform: translate(-50%, 0);
 }
 
+/* ---------- Plan B del correo (sin aplicación de correo configurada) ---------- */
+.mail-help {
+  position: fixed;
+  left: 50%;
+  bottom: max(var(--space-5), env(safe-area-inset-bottom));
+  z-index: 61;
+  width: min(420px, calc(100vw - 2 * var(--gutter)));
+  padding: var(--space-4) var(--space-4) var(--space-5) var(--space-5);
+  border: 1px solid var(--glass-border, var(--border));
+  border-radius: 18px;
+  background: var(--glass-bg-strong, var(--surface));
+  box-shadow: var(--glass-shadow, var(--shadow));
+  -webkit-backdrop-filter: var(--glass-filter, none);
+  backdrop-filter: var(--glass-filter, none);
+  opacity: 0;
+  transform: translate(-50%, 10px) scale(0.98);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.mail-help.is-open {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  transition:
+    opacity 220ms var(--ease-out),
+    transform 260ms var(--ease-out);
+}
+
+.mail-help__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-right: calc(-1 * var(--space-2));
+}
+
+.mail-help__title {
+  font-size: 1.0625rem;
+  letter-spacing: -0.01em;
+}
+
+.mail-help__text {
+  margin-top: var(--space-1);
+  color: var(--text-muted);
+  font-size: var(--step--1);
+}
+
+.mail-help__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mail-help,
+  .mail-help.is-open {
+    transform: translate(-50%, 0);
+  }
+}
+
+@media print {
+  .mail-help {
+    display: none;
+  }
+}
+
 /* ---------- Ajustes táctiles (mobile-native) ---------- */
 a,
 button,
