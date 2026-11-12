@@ -495,6 +495,15 @@
   background-color: var(--accent-soft);
 }
 
+/* Aclaración bajo el nombre (p. ej. qué parte de Meta) */
+.tech__note {
+  display: block;
+  margin-top: 2px;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
 .tech__badge {
   position: absolute;
   top: -0.6rem;

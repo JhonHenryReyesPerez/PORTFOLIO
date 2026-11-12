@@ -28,7 +28,9 @@ export async function initSkills() {
 function renderTech(item) {
   return el('li', { class: item.primary ? 'tech tech--primary' : 'tech' }, [
     item.icon ? logo(item.icon) : null,
-    el('span', { class: 'tech__name', text: item.name }),
+    item.note
+      ? el('span', { class: 'tech__name' }, [item.name, el('small', { class: 'tech__note', text: item.note })])
+      : el('span', { class: 'tech__name', text: item.name }),
     item.primary ? el('span', { class: 'tech__badge', text: 'Principal' }) : null,
   ]);
 }
