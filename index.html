@@ -375,6 +375,30 @@
     </button>
   </aside>
 
+  <section class="mail-help" role="dialog" aria-labelledby="mail-help-title" aria-describedby="mail-help-text" data-mail-help hidden>
+    <div class="mail-help__head">
+      <h2 class="mail-help__title" id="mail-help-title">¿No se abrió tu correo?</h2>
+      <button class="icon-btn mail-help__close" type="button" aria-label="Cerrar" data-mail-help-close>
+        <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+    </div>
+    <p class="mail-help__text" id="mail-help-text">Tu dispositivo no tiene una aplicación de correo configurada. Escríbeme desde:</p>
+    <div class="mail-help__actions">
+      <a class="btn btn--primary btn--sm" target="_blank" rel="noopener noreferrer" data-mail-help-gmail>
+        Gmail <span class="visually-hidden">(se abre en una pestaña nueva)</span>
+        <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg>
+      </a>
+      <a class="btn btn--ghost btn--sm" target="_blank" rel="noopener noreferrer" data-mail-help-outlook>
+        Outlook <span class="visually-hidden">(se abre en una pestaña nueva)</span>
+        <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg>
+      </a>
+      <button class="btn btn--ghost btn--sm" type="button" data-mail-help-copy>
+        <svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg>
+        Copiar correo
+      </button>
+    </div>
+  </section>
+
   <div class="toast" role="status" aria-live="polite" data-toast></div>
 </body>
 </html>

@@ -1,5 +1,6 @@
 import { getProfile } from './api.js';
 import { showToast } from './toast.js';
+import { initMailHelp, openMail } from './mail-help.js';
 
 /**
  * Contacto: enlaza el correo y las redes desde profile.json, copia el correo
@@ -21,6 +22,7 @@ export async function initContact() {
     // Si profile.json falla, el HTML ya trae el correo; no hace falta avisar
   }
 
+  initMailHelp({ onCopy: copyEmail });
   copyButton?.addEventListener('click', copyEmail);
   form?.addEventListener('submit', (event) => handleSubmit(event, form));
   form?.addEventListener('input', (event) => {
@@ -107,6 +109,6 @@ function handleSubmit(event, form) {
   const subject = String(data.get('subject')).trim();
   const body = `${String(data.get('message')).trim()}\n\n${String(data.get('name')).trim()}`;
 
-  window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   showToast('Abriendo tu aplicación de correo…');
+  openMail({ to: email, subject, body }, form.querySelector('[type="submit"]'));
 }
