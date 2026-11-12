@@ -41,7 +41,8 @@
       { "name": "Git", "icon": "git" },
       { "name": "Docker", "icon": "docker" },
       { "name": "Linux", "icon": "linux" },
-      { "name": "n8n", "icon": "n8n" }
+      { "name": "n8n", "icon": "n8n" },
+      { "name": "Meta", "icon": "meta", "note": "API de WhatsApp para chatbots" }
     ]
   }
 ]
