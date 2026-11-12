@@ -69,7 +69,9 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-3) var(--gap);
-  flex: none;
+  /* Quieta (sin JS o con movimiento reducido) se envuelve dentro del ancho disponible */
+  flex: 1 1 auto;
+  min-width: 0;
   font-size: var(--step-1);
   font-weight: 500;
   letter-spacing: -0.01em;
@@ -101,7 +103,19 @@
   background-color: var(--tint-blue);
 }
 
+/* Quieta: una lista compacta, con menos aire que en movimiento */
+.marquee:not(.is-live) {
+  --gap: 1rem;
+}
+
+.marquee:not(.is-live) .marquee__track {
+  row-gap: var(--space-2);
+  font-size: var(--step-0);
+}
+
+/* En movimiento mide lo que todas sus palabras; el riel la recorta */
 .marquee.is-live .marquee__track {
+  flex: none;
   flex-wrap: nowrap;
   animation: marquee var(--dur) linear infinite;
   animation-play-state: paused;
