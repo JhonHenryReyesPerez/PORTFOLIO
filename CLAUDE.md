@@ -250,6 +250,7 @@ Criterio: movimiento con propósito, no decoración. Detalle de cómo hacerlo en
 - Workflow `.github/workflows/deploy.yml` con `actions/upload-pages-artifact` + `actions/deploy-pages`, disparado en push a `main`.
 - Rutas **relativas** en todo el sitio (`assets/...`, `data/...`), nunca absolutas con `/`, porque el sitio vive en `https://<usuario>.github.io/<repo>/`.
 - Archivo `.nojekyll` en la raíz.
+- **Caché:** los CSS y `main.js` se enlazan con `?v=X.Y.Z` en `index.html` y `404.html`. Al publicar una versión, actualizar ese número para que los navegadores (sobre todo en iPhone) no mezclen HTML nuevo con CSS viejo.
 - Tras cada despliegue: verificar que la URL pública cargue, que los JSON respondan 200 y que no haya errores en consola.
 
 ## 13. Testing de usabilidad
