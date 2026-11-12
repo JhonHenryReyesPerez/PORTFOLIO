@@ -38,6 +38,14 @@ class KnowledgeBaseTest {
 	}
 
 	@Test
+	void keepsToolContextSoTheModelDoesNotGuessTheProject() {
+		assertThat(knowledgeBase.systemPrompt())
+				.contains("\"context\"")
+				.contains("proyecto privado")
+				.contains("solo si aparece en el \"stack\" de ese proyecto");
+	}
+
+	@Test
 	void tellsTheModelWhereRelativeLinksLive() {
 		assertThat(knowledgeBase.systemPrompt()).contains(SITE);
 	}

@@ -59,14 +59,15 @@
       "id": "smartcity-fix",
       "title": "SmartCity Fix",
       "subtitle": "Plataforma de reportes ciudadanos",
-      "description": "Plataforma construida durante un hackathon para reportar y gestionar incidentes urbanos. Los reportes se ubican en un mapa interactivo y n8n automatiza su gestión y las notificaciones a través de servicios externos.",
+      "description": "Plataforma construida durante un hackathon para reportar y gestionar incidentes urbanos. Los reportes se ubican en un mapa con geolocalización, un LLM vía OpenRouter los clasifica y n8n automatiza su gestión y las notificaciones por bots de Telegram, con registro en Google Sheets.",
       "highlights": [
         "Mapas interactivos con Leaflet.js",
         "Automatización de procesos con n8n",
-        "Integración con APIs externas",
+        "Clasificación automática de reportes con un LLM (OpenRouter)",
+        "Bots de Telegram y Google Sheets API",
         "Servicios en contenedores con Docker"
       ],
-      "stack": ["JavaScript", "Node.js", "Leaflet.js", "Docker", "n8n"],
+      "stack": ["JavaScript", "Node.js", "Leaflet.js", "Docker", "n8n", "Telegram", "OpenRouter"],
       "architecture": null,
       "category": "hackathon",
       "featured": true,
@@ -74,7 +75,7 @@
       "visual": {
         "type": "flow",
         "label": "Recorrido de un reporte",
-        "steps": ["Reporte ciudadano", "Mapa interactivo · Leaflet.js", "Servidor Node.js", "Flujo de automatización · n8n", "APIs externas y notificaciones"]
+        "steps": ["Reporte ciudadano", "Mapa interactivo · Leaflet.js", "Servidor Node.js", "Flujo de automatización · n8n", "LLM, Telegram y Google Sheets"]
       },
       "repo": "https://github.com/SebbsAL/Proyecto-N8N",
       "demo": null
@@ -107,10 +108,11 @@
       "id": "construccion",
       "title": "Gestión de Proyectos de Construcción",
       "subtitle": "CampusBuild · seguimiento de obra",
-      "description": "Aplicación web para seguir el personal, las actividades, los hitos y los cronogramas de proyectos de construcción, con la interfaz escrita en JavaScript.",
+      "description": "Aplicación web para seguir el personal, las actividades, los hitos y los cronogramas de proyectos de construcción, con una interfaz en JavaScript centrada en la claridad de la información. Está desplegada en Vercel y se probó con usuarios del equipo.",
       "highlights": [
         "Gestión de personal y actividades",
-        "Hitos y cronogramas por proyecto"
+        "Hitos y cronogramas por proyecto",
+        "Desplegada en Vercel y probada con usuarios"
       ],
       "stack": ["JavaScript", "HTML", "CSS"],
       "architecture": null,
@@ -128,8 +130,8 @@
     {
       "id": "neometro",
       "title": "Hackathon NeoMetro",
-      "subtitle": "Gestión de incidentes ciudadanos con mapas, automatización e integración de APIs.",
-      "stack": ["JavaScript", "n8n", "APIs"],
+      "subtitle": "Sistema de incidentes ciudadanos basado en eventos, con IA integrada y avisos en tiempo real por Telegram y Gmail. Lideré la integración de servicios externos con n8n Cloud y webhooks.",
+      "stack": ["n8n Cloud", "Webhooks", "Telegram", "Gmail"],
       "category": "hackathon",
       "featured": false,
       "repo": "https://github.com/JhonHenryReyesPerez/HackatonNeoMetro",
