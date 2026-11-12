@@ -42,7 +42,7 @@
       { "name": "Docker", "icon": "docker" },
       { "name": "Linux", "icon": "linux" },
       { "name": "n8n", "icon": "n8n" },
-      { "name": "Meta", "icon": "meta", "note": "API de WhatsApp para chatbots" }
+      { "name": "Meta", "icon": "meta", "note": "API de WhatsApp para chatbots", "context": "La usó en un proyecto privado con fines comerciales; por eso no está publicado en el portafolio y no se comparten sus detalles." }
     ]
   }
 ]

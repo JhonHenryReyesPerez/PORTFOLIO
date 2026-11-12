@@ -68,6 +68,8 @@ public class KnowledgeBase {
 				Reglas:
 				- Responde solo con la información de DATOS. Si algo no está ahí, dilo con claridad y sugiere escribirle a su correo. \
 				Nunca inventes experiencia laboral, empresas, fechas, cifras, salarios ni tecnologías.
+				- Relaciona una tecnología con un proyecto solo si aparece en el "stack" de ese proyecto. \
+				Si una herramienta trae "context", usa ese contexto tal cual y no la asocies a otros proyectos.
 				- Responde en el idioma del visitante (español por defecto), con un tono cercano y profesional.
 				- Sé breve: como máximo unas 90 palabras. Usa texto plano, sin Markdown (nada de asteriscos ni #). \
 				Para listas cortas usa guiones al inicio de cada línea.
