@@ -1,5 +1,5 @@
 /* =========================================================
-   Asistente con IA (la nutria)
+   Asistente con IA (Zeus, el perro de Jhon)
    Botón flotante + ventana de chat no modal. Usa los tokens de
    cristal del tema claro con respaldo a las superficies del oscuro.
    ========================================================= */
@@ -13,7 +13,7 @@
   z-index: 45;
 }
 
-/* "Volver arriba" se apila sobre la nutria */
+/* "Volver arriba" se apila sobre el asistente */
 .has-assistant .to-top {
   bottom: calc(max(var(--space-5), env(safe-area-inset-bottom)) + 72px);
 }
@@ -60,20 +60,20 @@
   }
 }
 
-/* Entrada: el botón aparece y la nutria se asoma desde abajo, una sola vez */
+/* Entrada: el botón aparece y Zeus se asoma desde abajo, una sola vez */
 .assistant.is-ready .assistant__launcher {
   animation: launcher-in 420ms var(--ease-out) 900ms backwards;
 }
 
 .assistant.is-ready .assistant__face {
-  animation: otter-peek 640ms var(--ease-out) 1100ms backwards;
+  animation: mascot-peek 640ms var(--ease-out) 1100ms backwards;
 }
 
 @keyframes launcher-in {
   from { opacity: 0; transform: scale(0.6); }
 }
 
-@keyframes otter-peek {
+@keyframes mascot-peek {
   from { transform: translateY(70%); }
   to { transform: translateY(6%); }
 }
@@ -148,7 +148,7 @@
   border-bottom: 1px solid var(--glass-border, var(--border));
 }
 
-/* La nutria se asoma por encima del borde de la ventana */
+/* Zeus se asoma por encima del borde de la ventana */
 .assistant__avatar {
   width: 46px;
   height: auto;
@@ -158,10 +158,10 @@
 }
 
 .assistant__avatar.is-thinking {
-  animation: otter-think 900ms var(--ease-in-out) infinite alternate;
+  animation: mascot-think 900ms var(--ease-in-out) infinite alternate;
 }
 
-@keyframes otter-think {
+@keyframes mascot-think {
   from { transform: translateY(0) rotate(0deg); }
   to { transform: translateY(-3px) rotate(-4deg); }
 }

@@ -48,7 +48,7 @@ export function createChat(root, endpoint) {
     ui.panel.hidden = false;
     requestAnimationFrame(() => root.classList.add('is-open'));
     ui.toggle.setAttribute('aria-expanded', 'true');
-    ui.toggleLabel.textContent = 'Cerrar el asistente';
+    ui.toggleLabel.textContent = 'Cerrar el asistente Zeus';
     scrollToEnd(ui.log, false);
     ui.input.focus({ preventScroll: true });
   }
@@ -56,7 +56,7 @@ export function createChat(root, endpoint) {
   function close({ returnFocus = true } = {}) {
     root.classList.remove('is-open');
     ui.toggle.setAttribute('aria-expanded', 'false');
-    ui.toggleLabel.textContent = 'Abrir el asistente';
+    ui.toggleLabel.textContent = 'Abrir el asistente Zeus';
     closeTimer = window.setTimeout(() => { ui.panel.hidden = true; }, prefersReducedMotion() ? 0 : CLOSE_DURATION);
     if (returnFocus) ui.toggle.focus();
   }
