@@ -1,5 +1,5 @@
 /**
- * Botón del asistente (la nutria). Es lo único que se carga con la página:
+ * Botón del asistente (Zeus). Es lo único que se carga con la página:
  * el chat (chat.js) se importa al pasar el puntero, enfocar o abrir el botón.
  * Si no hay una API configurada, el asistente no aparece y el sitio sigue igual.
  */
