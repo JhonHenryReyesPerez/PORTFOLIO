@@ -4,7 +4,17 @@ Portafolio profesional de **Jhon Reyes**, desarrollador de software backend con 
 
 **Sitio en línea:** [jhonhenryreyesperez.github.io/PORTFOLIO](https://jhonhenryreyesperez.github.io/PORTFOLIO/)
 
-<!-- TODO: captura o GIF del portafolio -->
+![Inicio del portafolio en tema oscuro](docs/screenshots/escritorio-oscuro.webp)
+
+<details>
+<summary>Más capturas: tema claro, proyectos, Zeus y móvil</summary>
+
+![Inicio en tema claro (cristal)](docs/screenshots/escritorio-claro.webp)
+![Sección de proyectos con filtros y diagrama de CampusDesk](docs/screenshots/proyectos.webp)
+![Zeus, el asistente con IA, respondiendo sobre los proyectos](docs/screenshots/asistente-zeus.webp)
+<img src="docs/screenshots/movil.webp" alt="Inicio en un móvil de 390 px" width="320">
+
+</details>
 
 ## Funcionalidades
 
@@ -109,14 +119,17 @@ El workflow `.github/workflows/deploy.yml` publica en GitHub Pages en cada push 
 ## Testing
 
 - **Contraste:** todas las combinaciones de color se verificaron contra WCAG AA (texto ≥ 4.5:1, bordes de campos ≥ 3:1) en ambos temas.
-- **API:** 23 pruebas (JUnit 5, Mockito, `@WebMvcTest`, `MockRestServiceServer`) cubren el endpoint, la validación, CORS, el límite de uso, el cliente de DeepSeek y la base de conocimiento.
+- **API:** 24 pruebas (JUnit 5, Mockito, `@WebMvcTest`, `MockRestServiceServer`) cubren el endpoint, la validación, CORS, el límite de uso, el cliente de DeepSeek y la base de conocimiento.
 - **Viewports:** `tests/viewports.html` muestra el sitio a 320, 390 y 768 px a la vez.
-- _TODO: resultados de Lighthouse, validadores W3C y pruebas automatizadas._
+- **Responsive:** sin scroll horizontal en 320, 375, 390, 768, 1024, 1280, 1440 y 1920 px, también con "reducir movimiento" activado. Probado además en un iPhone real.
+- **Accesibilidad:** navegación completa con teclado (menú móvil, filtros, asistente y panel de correo se cierran con Esc y devuelven el foco), foco visible y animaciones desactivadas con `prefers-reduced-motion`.
+- **Flujos revisados en el sitio publicado:** carga de proyectos y stack desde JSON, filtros, formulario de contacto (`mailto:` con asunto y mensaje, y plan B con Gmail/Outlook), copiar correo, descarga del CV y respuestas del asistente.
 
 ## Imágenes y recursos
 
 - **Foto de perfil:** recortada a 3:4 y convertida a WebP en dos anchos (360 px ≈ 9 KB y 640 px ≈ 20 KB, frente a 79 KB del JPEG original), servida con `srcset`, `width`/`height` explícitos y `loading="lazy"`.
 - **Mascota (Zeus):** ilustración recortada del fondo y convertida a WebP: busto a 160/320 px (10 y 24 KB) para la ventana y cabeza a 64/128 px (3 y 7 KB) para el botón, con `srcset`. El avatar de la ventana se carga con `loading="lazy"`.
+- **Vista previa al compartir el enlace:** `assets/img/og/portfolio-og.jpg`, captura del inicio a 1200×630 en JPG (65 KB), declarada con Open Graph (`og:image` absoluto, tamaño y texto alternativo).
 - **Logos del stack:** [Simple Icons](https://simpleicons.org) 16.37.0 (CC0), reunidos en un sprite local `assets/icons/tech.svg` de ~24 KB. Las marcas pertenecen a sus respectivos dueños.
 
 ## Autor
