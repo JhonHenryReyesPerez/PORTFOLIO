@@ -21,7 +21,7 @@ Portafolio profesional de **Jhon Reyes**, desarrollador de software backend con 
   - Cada proyecto tiene su color y un panel visual propio: diagramas donde un pulso recorre las capas (CampusDesk, SmartCity Fix), módulos MVC (RapidExpress), modelo de datos (Coworking) y la captura de la demo en un marco de navegador (CampusBuild).
   - Indicador del filtro que se desliza con `clip-path`, iconos que se cruzan con escala y desenfoque, entrada en grupo de los proyectos.
   - Todo respeta `prefers-reduced-motion` y tiene un estado final sin JavaScript.
-- **Asistente con IA (la nutria):** un botón flotante abre un chat que responde preguntas sobre el perfil, el stack y los proyectos. Lo atiende una API propia en Spring Boot (ver [API del asistente](#api-del-asistente-plus)) que usa DeepSeek y solo responde con los datos de `data/`. El chat se descarga al acercar el puntero o enfocar el botón, la ventana se opera con teclado (Esc cierra y devuelve el foco), los mensajes se anuncian con `aria-live` y, si la API no responde, ofrece el correo como alternativa. Si no hay API configurada, el botón no aparece.
+- **Asistente con IA (Zeus):** Zeus, el perro de Jhon dibujado con traje, es el asistente: un botón flotante abre un chat que responde preguntas sobre el perfil, el stack y los proyectos. Lo atiende una API propia en Spring Boot (ver [API del asistente](#api-del-asistente-plus)) que usa DeepSeek y solo responde con los datos de `data/`. El chat se descarga al acercar el puntero o enfocar el botón, la ventana se opera con teclado (Esc cierra y devuelve el foco), los mensajes se anuncian con `aria-live` y, si la API no responde, ofrece el correo como alternativa. Si no hay API configurada, el botón no aparece.
 - **Accesibilidad:** HTML semántico, enlace para saltar al contenido, foco visible, navegación completa con teclado, contraste WCAG AA verificado.
 
 ## Tecnologías
@@ -116,7 +116,7 @@ El workflow `.github/workflows/deploy.yml` publica en GitHub Pages en cada push 
 ## Imágenes y recursos
 
 - **Foto de perfil:** recortada a 3:4 y convertida a WebP en dos anchos (360 px ≈ 9 KB y 640 px ≈ 20 KB, frente a 79 KB del JPEG original), servida con `srcset`, `width`/`height` explícitos y `loading="lazy"`.
-- **Mascota:** recortada del fondo y convertida a WebP: cuerpo a 160/320 px (14 y 36 KB) y cabeza a 64/128 px (3 y 7,5 KB), con `srcset`. El avatar de la ventana se carga con `loading="lazy"`.
+- **Mascota (Zeus):** ilustración recortada del fondo y convertida a WebP: busto a 160/320 px (10 y 24 KB) para la ventana y cabeza a 64/128 px (3 y 7 KB) para el botón, con `srcset`. El avatar de la ventana se carga con `loading="lazy"`.
 - **Logos del stack:** [Simple Icons](https://simpleicons.org) 16.37.0 (CC0), reunidos en un sprite local `assets/icons/tech.svg` de ~24 KB. Las marcas pertenecen a sus respectivos dueños.
 
 ## Autor

@@ -104,7 +104,7 @@ Reglas:
 │   │   ├── toast.js          # avisos breves
 │   │   └── assistant/        # launcher.js (botón, carga diferida) + chat.js (ventana de chat)
 │   ├── img/
-│   │   ├── mascot/           # nutria del asistente (WebP)
+│   │   ├── mascot/           # Zeus, el asistente (WebP)
 │   │   ├── profile/
 │   │   └── projects/
 │   ├── icons/
@@ -240,7 +240,7 @@ Criterio: movimiento con propósito, no decoración. Detalle de cómo hacerlo en
   - 2 momentos: cinta de tecnologías con pausa (`marquee.js`) y frase que se enciende al hacer scroll en Sobre mí (`word-highlight.js`).
   - Paneles visuales por proyecto (`project-card.js` + `projects.css`): 2 diagramas con pulsos (CampusDesk, SmartCity Fix), módulos MVC y esquema de BD que se iluminan en secuencia, todos 3 ciclos y reposo; captura de demo en marco de navegador. Cada proyecto tiene un tono (`tint` en `projects.json` → `--tint-*` en `tokens.css`).
   - Bloque de contacto (CTA) con degradado accent → accent-2 y brillo en el botón primario.
-  - Asistente (`assistant.css`): la nutria se asoma una vez al cargar, se inclina en hover, se balancea mientras piensa y tres puntos de "escribiendo"; la ventana abre con opacidad + escala desde la esquina.
+  - Asistente (`assistant.css`): Zeus (el perro de Jhon) se asoma una vez al cargar, se inclina en hover, se balancea mientras piensa y tres puntos de "escribiendo"; la ventana abre con opacidad + escala desde la esquina.
   - Micro-interacciones: indicador de filtros con `clip-path`, intercambio de iconos (tema, copiar), reenviar petición.
 - **Obligatorio:** `@media (prefers-reduced-motion: reduce)` desactiva o reduce todas las animaciones.
 - Las animaciones nunca deben ocultar contenido si el JS falla (el contenido es visible por defecto; la clase de animación se agrega desde JS).
@@ -329,7 +329,7 @@ Para sumar el plus sin complicar el sitio principal, la opción recomendada es c
 - [ ] Preferencia de colores (si tiene una).
 - [x] Opción elegida para el plus framework (§15): API Spring Boot del asistente.
 - [x] URL pública de la API en Render: https://jhon-portfolio-api.onrender.com
-- [ ] Licencia u origen de la ilustración de la nutria (`assets/img/Mascota.png`).
+- [x] Mascota del asistente: Zeus, el perro de Jhon (ilustración aportada por el usuario).
 
 ## 17. Reglas para Claude
 
